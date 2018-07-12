@@ -1,0 +1,14 @@
+{
+  "comments": false,
+  "env": {
+    "admin": {
+      "presets": [
+        ["env", {
+          "targets": { "node": 7 }
+        }],
+        "stage-0"
+      ]
+    }
+  },
+  "plugins": ["transform-runtime"]
+}

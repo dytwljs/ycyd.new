@@ -1,0 +1,90 @@
+/* pages/ucenter/auth/login.wxss */
+
+.container{
+    text-align: center;
+    height: 100%;
+}
+
+
+
+.profile-info{
+    width: 100%;
+    height: 280rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 30.25rpx;
+    background: #2e4a56;
+    /* background: #c0c0c0; */
+    /* background: #333; */
+}
+
+.profile-info .avatar{
+    height: 250rpx;
+    width: 250rpx;
+    border:0rpx;
+    border-radius: 50%;
+    /* background: #c0c0c0; */
+    background: #2e4a56;
+}
+
+
+.profile-info .login{
+    width: 60%;
+    font-size: 36rpx;
+    text-align: center;
+    padding: 30rpx;
+    border: 5rpx solid silver;
+    border-radius: 3%;
+}
+
+.profile-info .info{
+    flex: 1;
+    height: 85rpx;
+    padding-left: 31.25rpx;
+}
+
+.profile-info .name{
+    display: block;
+    height: 45rpx;
+    line-height: 45rpx;
+    color: #fff;
+    font-size: 37.5rpx;
+    margin-bottom: 10rpx;
+}
+
+.user-menu{
+    width: 100%;
+    text-align: center;
+
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+.user-menu .button{
+    width: 60%;
+    font-size: 36rpx;
+    text-align: center;
+    margin: 20%;
+    /* padding: 70rpx; */
+    border: 5rpx solid silver;
+    border-radius: 3%;
+}
+.user-menu .vwExit{
+
+    text-align: center;  
+}
+.user-menu .exit{
+    width: 60%;
+    height: 100rpx;
+    font-size: 36rpx;
+    text-align: center;  
+    margin: 20%;
+}
+
+
+
+
+
+

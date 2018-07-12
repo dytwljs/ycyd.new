@@ -1,0 +1,39 @@
+var parses={
+    urlPrefix:function(url,prefix){
+      if(!url)
+        return url;
+      console.log('......................')
+        console.log(url)
+        if(url.substring(0,7)=='http://' || url.substring(0,8)=='https://' )
+            return url
+
+        console.log(prefix+url)
+        return prefix+url
+    },
+    replacePrefix:function(url,prefix){
+
+
+      //   var  url = "http://www.cnblogs.com/cench"
+ 
+      //   var reg = /^http(s)?:\/\/(.*?)\//
+      //   // 必须是http开头或者https开头，结尾为'/'
+         
+      //   // 把host替换成指定数值
+         
+      //   var ToReplace = 'Host/'
+         
+      // return  url.replace(reg, ToReplace)
+         
+      //   // Host/cench
+         
+      //   //*******************************************
+         
+      //  // 如果只需要取出例如：www.cnblogs.com，则通过以下方式
+         
+      //  return reg.exec(url)[2]
+
+    }
+}
+module.exports={
+urlPrefix:parses.urlPrefix
+}
