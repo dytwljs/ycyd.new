@@ -60,5 +60,6 @@ App({
       ,authorize:0
     },
     token: '',
+    // pay_test:true
   }
 })

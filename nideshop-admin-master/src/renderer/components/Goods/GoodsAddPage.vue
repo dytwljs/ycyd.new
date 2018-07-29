@@ -25,18 +25,24 @@
             <el-input v-model="infoForm.name"></el-input>
           </el-form-item>
 
-          <el-form-item label="条件码" prop="ean_code">
-            <el-input v-model="infoForm.ean_code"></el-input>
+          <el-form-item label="条形码" prop="ean_code">
+            <el-input type='number' v-model="infoForm.ean_code"></el-input>
           </el-form-item>
-          <el-form-item label="商品价格" prop="retail_price">
-            <el-input v-model="infoForm.retail_price"></el-input>
+          <el-form-item label="进货价" prop="price">
+            <el-input type='number' v-model="infoForm.price"></el-input>
+          </el-form-item>
+          <el-form-item label="批发价" prop="trade_price">
+            <el-input type='number' v-model="infoForm.trade_price"></el-input>
+          </el-form-item>
+          <el-form-item label="零售价" prop="retail_price">
+            <el-input type='number' v-model="infoForm.retail_price"></el-input>
           </el-form-item>
           <!-- <el-form-item label="所属分类">
             <el-cascader :options="options" placeholder="请选择分类" v-model="selectedOptions" @change="handleChange">
             </el-cascader>
           </el-form-item> -->
           <el-form-item label="所属分类" prop="category_id">
-             <el-select v-model="infoForm.category_name" value-key="id" filterable placeholder="请选择" @change="handleSelectChage">
+             <el-select v-model="infoForm.category_id" value-key="id" filterable placeholder="请选择" @change="handleSelectChage">
               <el-option
                 v-for="item in infoForm.allCategory"
                 :key="item.id"
@@ -44,11 +50,6 @@
                 :value="item.id">
               </el-option>
             </el-select>
-
-            <!-- <el-select v-model="infoForm.region" placeholder="请选择分类">
-              <el-option label="长城" value="shanghai"></el-option>
-              <el-option label="宝马" value="beijing"></el-option>
-            </el-select> -->
           </el-form-item>
 
           <el-form-item label="商品单位" prop="category_id">
@@ -104,17 +105,17 @@
               </quill-editor>
             </div>
           </el-form-item>
-          <el-form-item label="规格/库存" prop="goods_number">
+    <!--       <el-form-item label="规格/库存" prop="goods_number">
             <el-input type="number" v-model="infoForm.goods_number"></el-input>
-          </el-form-item>
-          <el-form-item label="推荐类型">
+          </el-form-item> -->
+<!--           <el-form-item label="推荐类型">
             <el-checkbox-group v-model="infoForm.is_new">
               <el-checkbox label="新品" name="is_new" ></el-checkbox>
             </el-checkbox-group>
             <el-checkbox-group v-model="infoForm.is_hot">
               <el-checkbox label="人气" name="is_hot"></el-checkbox>
             </el-checkbox-group>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="上架">
             <el-switch on-text="上架" off-text="下架" on-value="1" off-value="0" v-model="infoForm.is_on_sale"></el-switch>
           </el-form-item>
@@ -155,7 +156,7 @@
     data() {
       return {
         uploaderHeader: {
-          'X-Nideshop-Token': localStorage.getItem('token') || '',
+          'X-ycyd-Token': localStorage.getItem('token') || '',
         },
         editorOption: {
           modules: {
@@ -196,6 +197,10 @@
           //g_add
           ,goods_unit:"只"
           ,primary_pic_url:""
+          ,goods_number:10000000
+          ,category_id:0
+          ,allCategory     :{}
+
         },
         infoRules: {
           name: [
@@ -207,9 +212,9 @@
           list_pic_url: [
             { required: true, message: '请选择商品图片', trigger: 'blur' },
           ],
-          goods_number: [
-            {required: true, min:1, max:8,message: '请输入8位数字', trigger: 'blur' },
-          ],
+          // goods_number: [
+          //   {required: true, min:1, max:8,message: '请输入8位数字', trigger: 'blur' },
+          // ],
         },
       }
     },
@@ -248,10 +253,11 @@
         quill.setSelection(length + 1)
       },
       onSubmitInfo() {
+        let that=this;
         this.$refs['infoForm'].validate((valid) => {
           if (valid) {
-            this.infoForm.fileUrl=this.infoForm.fileName
-            this.axios.post('goods/store', this.infoForm).then((response) => {
+            that.infoForm.fileUrl=this.infoForm.fileName
+            this.axios.post('goods/store', that.infoForm).then((response) => {
               if (response.data.errno === 0) {
                 this.$message({
                   type: 'success',
@@ -336,7 +342,7 @@
         }).then((response) => {
           that.infoForm.allCategory = response.data.data;
           // console.log(response.data.data);
-          console.log("all category.......");
+          // console.log("all category.......");
         })
       },
       // summernote 上传图片，返回链接
@@ -388,7 +394,7 @@
     mounted() {
       this.infoForm.id = this.$route.query.id || 0;
       this.getInfo();
-      console.log(api);
+      // console.log(api);
       if(this.infoForm.id == 0){
         this.getAllCategory();
       }

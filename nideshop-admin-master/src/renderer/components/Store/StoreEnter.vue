@@ -54,13 +54,13 @@
                     </el-table-column>
                     <el-table-column prop="goods_name" label="产品">
                     </el-table-column>
-                    <el-table-column prop="enter_number" label="数量">
+                    <el-table-column prop="number" label="数量">
                     </el-table-column>
-                    <el-table-column prop="buy_price" label="进货价">
+                    <el-table-column prop="price" label="进货价">
                     </el-table-column>
-                    <el-table-column prop="buy_sale_price" label="批发价">
+                    <el-table-column prop="trade_price" label="批发价">
                     </el-table-column>
-                    <el-table-column prop="retail_price" label="销售价">
+                    <el-table-column prop="retail_price" label="零售价">
                     </el-table-column>
                     <el-table-column label="操作" width="230">
                         <template scope="scope">
@@ -122,7 +122,7 @@
             ,product_id       :row.product_id
             ,goods_id         :row.goods_id
 
-            ,enter_number:row.enter_number
+            ,number:row.number
           }
         }).then((response) => {
           this.tableDataDetail = response.data.data

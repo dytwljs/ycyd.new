@@ -170,6 +170,15 @@ module.exports = class extends Base {
     return this.success({ orderInfo: orderInfo });
   }
 
+  // async finishPayAction(){
+  //   const id=this.get('id');  
+  //   let update = await this.model('order').where({id: id}).update({order_status: 301});
+  //   if(update>0)
+  //     return this.success();
+  //   else
+  //     return this.fail('更新订单失败');
+  // }
+
   /**
    * 查询物流信息
    * @returns {Promise.<void>}

@@ -35,14 +35,14 @@ module.exports = class extends think.Service {
     return decoded;
   }
 
-    /**
+  /**
    * 解析微信登录用户数据
    * @param sessionKey
    * @param encryptedData
    * @param iv
    * @returns {Promise.<string>}
    */
-  async decryptUserInfoData(sessionKey, encryptedData, iv,appid) {
+  async decryptUserInfoData(sessionKey, encryptedData, iv, appid) {
     // base64 decode
     const _sessionKey = Buffer.from(sessionKey, 'base64');
     encryptedData = Buffer.from(encryptedData, 'base64');
@@ -55,31 +55,27 @@ module.exports = class extends think.Service {
       decipher.setAutoPadding(true);
       decoded = decipher.update(encryptedData, 'binary', 'utf8');
       decoded += decipher.final('utf8');
-
       decoded = JSON.parse(decoded);
     } catch (err) {
       return '';
     }
-
     // if (decoded.watermark.appid !== think.config('weixin.appid')) 
     // return '';
-   
-    if (decoded.watermark.appid !== appid) 
+    if (decoded.watermark.appid !== appid)
       return '';
-    
-
     return decoded;
   }
 
   /**
    * 统一下单
+   * g_销售订单和用户订单分开处理
    * @param payInfo
    * @returns {Promise}
    */
-  createUnifiedOrder(payInfo) {
+  createUnifiedOrder(payInfo, isSale = 0) {
     const WeiXinPay = require('weixinpay');
     const weixinpay = new WeiXinPay({
-      appid: think.config('weixin.appid'), // 微信小程序appid
+      appid: think.config(isSale ? 'weixin.appid_sale' : 'weixin.appid'), // 微信小程序appid
       openid: payInfo.openid, // 用户openid
       mch_id: think.config('weixin.mch_id'), // 商户帐号ID
       partner_key: think.config('weixin.partner_key') // 秘钥
@@ -90,7 +86,7 @@ module.exports = class extends think.Service {
         out_trade_no: payInfo.out_trade_no,
         total_fee: payInfo.total_fee,
         spbill_create_ip: payInfo.spbill_create_ip,
-        notify_url: think.config('weixin.notify_url'),
+        notify_url: think.config(isSale ? 'weixin.notifySale_url' : 'weixin.notify_url'),
         trade_type: 'JSAPI'
       }, (res) => {
         if (res.return_code === 'SUCCESS' && res.result_code === 'SUCCESS') {

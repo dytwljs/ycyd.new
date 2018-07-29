@@ -58,7 +58,7 @@
       return {
         rootHost:this.axios.defaults.baseHOST,
         uploaderHeader: {
-          'X-Nideshop-Token': localStorage.getItem('token') || '',
+          'X-ycyd-Token': localStorage.getItem('token') || '',
         },
         parentCategory: [
           {

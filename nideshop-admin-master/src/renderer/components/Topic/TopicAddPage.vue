@@ -97,7 +97,7 @@
         data() {
             return {
                 uploaderHeader: {
-                    'X-Nideshop-Token': localStorage.getItem('token') || '',
+                    'X-ycyd-Token': localStorage.getItem('token') || '',
                 },
                 editorOption: {
                 modules: {

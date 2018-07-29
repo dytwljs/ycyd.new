@@ -183,8 +183,8 @@ Page({
      */
     onShow: function () {
 
-        this.test();
-        return;
+        // this.test();
+        // return;
         if (app.globalData.userInfo.authorize<9) {
         wx.navigateTo({
           url: '../../pages/ucenter/auth/login',

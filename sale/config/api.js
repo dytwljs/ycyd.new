@@ -4,15 +4,19 @@ const ApiRootUrl = config.service.host+'/api/';
 
 module.exports = {
   HOST:config.service.host,
+  SaleOrderAdd:ApiRootUrl+'sale_order/add',   //增加销售订单
+  SaleOrderStatus:ApiRootUrl+'sale_order/status',   //修改销售订单状态
   StoreEan:ApiRootUrl+'store/ean',
   Z_Test:ApiRootUrl+'z_test/test',
   StoreSale:ApiRootUrl+'store/index',
+
+
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
   CatalogList: ApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
   CatalogCurrent: ApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
 
   AuthLoginByWeixin: ApiRootUrl + 'auth/loginByWeixin', //微信登录
-  GetPhone: ApiRootUrl + 'auth/GetPhone', //微信登录
+  GetPhone: ApiRootUrl + 'auth/GetPhone', //a
 
   GetUserInfo:ApiRootUrl + 'user/UserInfo', //获取用户信息
 

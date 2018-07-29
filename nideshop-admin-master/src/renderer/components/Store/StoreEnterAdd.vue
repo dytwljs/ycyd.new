@@ -25,7 +25,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="选择供货商" prop="brand_id">
-             <el-select v-model="infoForm.brand_name" value-key="id" filterable placeholder="请选择" @change="handleSelectChageBrand">
+             <el-select v-model="infoForm.brand_id" value-key="id" filterable placeholder="请选择" @change="handleSelectChageBrand">
               <el-option
                 v-for="item in infoForm.allCategory.brand"
                 :key="item.id"
@@ -35,9 +35,9 @@
             </el-select>
           </el-form-item>
  
-          <el-form-item label="入库单编码" prop="no">
+          <!-- <el-form-item label="入库单编码" prop="no">
             <el-input type="number"  v-model="infoForm.no"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="供应商联系人" prop="brand_contactor">
             <el-input   v-model="infoForm.brand_contactor"></el-input>
           </el-form-item>
@@ -73,7 +73,7 @@
     data() {
       return {
         uploaderHeader: {
-          'X-Nideshop-Token': localStorage.getItem('token') || '',
+          'X-ycyd-Token': localStorage.getItem('token') || '',
         },
 
         infoForm: {
@@ -97,7 +97,7 @@
           // name: [
           //   { required: true, message: '请输入名称', trigger: 'blur' },
           // ],
-          enter_number: [
+          number: [
             {required: true, min:1, max:5,message: '请输入5位以下数字', trigger: 'blur' },
           ],
         },

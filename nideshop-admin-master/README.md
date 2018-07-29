@@ -1,5 +1,5 @@
-# nideshop-admin
-Node.js开源商城NideShop管理后台（基于Node.js、Vue.js、Element UI、~~Electron~~）
+# ycyd-admin
+
 [Font Awesome](http://fontawesome.dashgame.com/)
 
 ### 测试版包含功能（待完善）
@@ -13,7 +13,6 @@ Node.js开源商城NideShop管理后台（基于Node.js、Vue.js、Element UI、
 ### Build Setup
 
 + 安装yc
-[GitHub](https://github.com/Mrjingfu/nideshop)
 
 + 修改api地址
 src/renderer/main.js

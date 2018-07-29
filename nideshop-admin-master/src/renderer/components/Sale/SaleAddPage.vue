@@ -3,7 +3,7 @@
         <div class="content-nav">
             <el-breadcrumb class="breadcrumb" separator="/">
                 <el-breadcrumb-item :to="{ name: 'dashboard' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>销售商管理</el-breadcrumb-item>
+                <el-breadcrumb-item>销售商登记手机号</el-breadcrumb-item>
                 <el-breadcrumb-item>{{infoForm.id ? '编辑销售商' : '添加销售商'}}</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="operation-nav">
@@ -15,23 +15,27 @@
                 <el-form ref="infoForm" :rules="infoRules" :model="infoForm" label-width="120px">
                     <el-form-item label="上级销售商" prop="parent_id">
                         <el-select v-model="infoForm.parent_id" placeholder="请选择上级分类">
-                            <el-option v-for="item in parentSale" :key="item.id" :label="item.name" :value="item.id"></el-option>
+                            <el-option v-for="item in parentSale" :key="item.mobile" :label="item.name" :value="item.mobile"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="手机号" prop="mobile">
+                    <el-form-item label="手机号." prop="mobile">
                         <el-input type="number" v-model="infoForm.mobile"></el-input>
                     </el-form-item>
-                    <el-form-item label="销售商名称" prop="name">
+                    <el-form-item label="姓名" prop="name">
                         <el-input v-model="infoForm.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="简短介绍" prop="desc">
+
+                    <el-form-item label="通过授权">
+                        <el-switch v-model="infoForm.authorize"></el-switch>
+                    </el-form-item>
+<!--                     <el-form-item label="简短介绍" prop="desc">
                         <el-input type="textarea" v-model="infoForm.desc" :rows="3"></el-input>
                         <div class="form-tip"></div>
-                    </el-form-item>
-                    <el-form-item label="授权状态" prop="authorize">
+                    </el-form-item> -->
+                   <!--  <el-form-item label="授权状态" prop="authorize">
                         <el-select v-model="infoForm.authorize" placeholder="请选择状态">
                             <el-option v-for="item in authorizeType" :key="item.id" :label="item.name" :value="item.id"></el-option>
-                        </el-select>
+                        </el-select> -->
                     </el-form-item>
 <!--                     <el-form-item label="图标" prop="wap_banner_url">
                         <el-upload class="image-uploader" name="wap_banner_pic"
@@ -71,7 +75,7 @@
       return {
         rootHost:this.axios.defaults.baseHOST,
         uploaderHeader: {
-          'X-Nideshop-Token': localStorage.getItem('token') || '',
+          'X-ycyd-Token': localStorage.getItem('token') || '',
         },
         parentSale: [
           {
@@ -80,21 +84,22 @@
           }
         ],
         //是否授权(0,未 1,已 2,已申请 3,审核中 9,不予授权
+        // 0,未登录 1,已登录获取用户信息 2,获取电话号码,未登记电话 3,已登记电话,未审核 9,已登记,审核通过
         authorizeType:[
           {id:0,
-            name:'未审核'},
+            name:'未登录'},
           {id:1,
-            name:'审核通过'},
+            name:'已登录获取用户信息'},
           {id:2,
-            name:'申请审核'},
+            name:'获取电话号码,未登记电话 '},
           {id:3,
-            name:'审核中'},
+            name:'已登记电话,未审核'},
           {id:9,
-            name:'不予授权'}
+            name:'已登记,审核通过'}
         ],
         infoForm: {
-          id: 0,
-          name: "",
+          mobile: 0,
+          username: "",
           parent_id: 0,
           desc: '',
           team_id: 0,
@@ -107,7 +112,7 @@
           //   {required: true, min:11, max:11,message: '请输入11位数字手机号', trigger: 'blur' },
           // ],
           mobile: [
-              { validator: validateMobile, trigger: 'blur' },
+              // { validator: validateMobile, trigger: 'blur' },
               { required: true, message: '请输入手机号', trigger: 'blur' },
               { pattern: /^1[34578]\d{9}$/, message: '目前只支持中国大陆的手机号码' }
           ],
@@ -127,9 +132,75 @@
       goBackPage() {
         this.$router.go(-1);
       },
+      // onSubmitInfo() {
+      //  // var ID = UUID.v1();
+      //  // 
+      //   let that =this;
+      //   if(this.infoForm.parent_id==this.infoForm.mobile){
+      //           this.$message({
+      //             type: 'error',
+      //             message: '上级经销商不能为自己'
+      //           })
+      //     return false;
+      //   }
+      //   this.$refs['infoForm'].validate((valid) => {
+      //     if (valid) {
+      //      // this.infoForm.wap_banner_url=this.infoForm.fileName;
+      //      // 
+      //       if(this.infoForm.isRecordNew){
+      //         var a= await Axios.post('sale/findSaleReg', this.infoForm).then((response) => {
+      //           if (response.data.errno === 0) {
+
+
+      //           } else {
+      //             console.log(response.data.errmsg);
+      //             this.$message({
+      //               type: 'error',
+      //               message: '手机号已存在，请检查手机号'
+      //             })
+      //             return false;
+      //           }
+      //         });
+
+      //       }
+      //      //取得销售商等级  
+      //        var sales=this.parentSale.filter(function(p){
+      //         return p.id==that.infoForm.parent_id;
+      //        });
+      //        if(sales[0])
+      //         this.infoForm.layer=sales[0].layer+1;
+      //       if(this.infoForm.isRecordNew){
+      //         this.infoForm.id=UUID.v1();
+      //         this.infoForm.create_admin=JSON.parse(localStorage.userInfo).id;
+      //         this.infoForm.create_time=moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+      //         var userInfo  =localStorage.getItem('userInfo');
+      //       }
+
+      //     var b= await this.axios.post('sale/saleReg', this.infoForm).then((response) => {
+      //         if (response.data.errno === 0) {
+      //           this.$message({
+      //             type: 'success',
+      //             message: '保存成功'
+      //           });
+      //           this.$router.go(-1)
+      //         } else {
+      //           console.log(response.data.errmsg);
+      //           this.$message({
+      //             type: 'error',
+      //             message: '保存失败'
+      //           })
+      //         }
+      //         // console.log(response);
+      //       })
+      //     } else {
+      //       return false;
+      //     }
+      //   });
+      // },
+      
       onSubmitInfo() {
-       // var ID = UUID.v1();
-        if(this.infoForm.parent_id==this.infoForm.id){
+        let that =this;
+        if(this.infoForm.parent_id==this.infoForm.mobile){
                 this.$message({
                   type: 'error',
                   message: '上级经销商不能为自己'
@@ -137,56 +208,60 @@
           return false;
         }
         this.$refs['infoForm'].validate((valid) => {
-          if (valid) {
-           // this.infoForm.wap_banner_url=this.infoForm.fileName;
-           //取得销售商等级  
-            let that =this;
-             var sales=this.parentSale.filter(function(p){
-              return p.id==that.infoForm.parent_id;
-             });
-             if(sales[0])
-              this.infoForm.layer=sales[0].layer+1;
+          if (!valid){
+            return false;
+          }else
+          {
             if(this.infoForm.isRecordNew){
-              this.infoForm.id=UUID.v1();
-              this.infoForm.create_admin=JSON.parse(localStorage.userInfo).id;
-              this.infoForm.create_time=moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+              this.axios.post('sale/findSaleReg', this.infoForm).then((response) => {
+                if (response.data.errno === 0) {
+               //取得销售商等级  
+                 var sales=this.parentSale.filter(function(p){
+                  return p.id==that.infoForm.parent_id;
+                 });
+                 if(sales[0])
+                  this.infoForm.layer=sales[0].layer+1;
+                if(this.infoForm.isRecordNew){
+                  this.infoForm.id=UUID.v1();
+                  this.infoForm.create_admin=JSON.parse(localStorage.userInfo).id;
+                  this.infoForm.create_time=moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+                  var userInfo  =localStorage.getItem('userInfo');
+                }
+
+               this.axios.post('sale/saleReg', this.infoForm).then((response) => {
+                  if (response.data.errno === 0) {
+                    this.$message({
+                      type: 'success',
+                      message: '保存成功'
+                    });
+                    this.$router.go(-1)
+                  } else {
+                    console.log(response.data.errmsg);
+                    this.$message({
+                      type: 'error',
+                      message: '保存失败'
+                    })
+                  }
+                  // console.log(response);
+                });
+
+                } else {
+                  console.log(response.data.errmsg);
+                  this.$message({
+                    type: 'error',
+                    message: '手机号已存在，请检查手机号'
+                  })
+                  return false;
+                }
+              });
+
             }
 
-            this.axios.post('sale/store', this.infoForm).then((response) => {
-              if (response.data.errno === 0) {
-                this.$message({
-                  type: 'success',
-                  message: '保存成功'
-                });
-                this.$router.go(-1)
-              } else {
-                console.log(response.data.errmsg);
-                this.$message({
-                  type: 'error',
-                  message: '保存失败'
-                })
-              }
-              // console.log(response);
-            })
-          } else {
-            return false;
-          }
+          } 
         });
       },
-      // handleUploadImageSuccess(res, file) {
-      //   if (res.errno === 0) {
-      //     switch (res.data.name) {
-      //       //分类图片
-      //       case 'wap_banner_url':
-      //         // this.$set('infoForm.wap_banner_url', res.data.fileUrl);
-      //         this.infoForm.wap_banner_url = res.data.fileUrl;
-      //         this.infoForm.fileName = res.data.fileName;
-      //         break;
-      //     }
-      //   }
-      // },
       getParentSale() {
-        this.axios.get('sale/parentSale').then((response) => {
+        this.axios.get('sale/parentSaleReg').then((response) => {
           // this.parentSale = this.parentSale.concat(response.data.data);
           this.parentSale = response.data.data;
         })

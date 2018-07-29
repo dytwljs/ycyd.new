@@ -14,7 +14,8 @@ module.exports = {
     'store',
     'z_test',
     'user',
-    'sale'
+    'sale',
+    'sale_order'
   ],
 
   // 可以公开访问的Action

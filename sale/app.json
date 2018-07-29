@@ -1,9 +1,18 @@
 {
   "pages": [
-    "pages/index/index"
-    ,"pages/ucenter/auth/login"
+    "pages/sale/index",
+    "pages/index/index",
+    "pages/ucenter/auth/login",
+    "pages/ucenter/welcome/index"
   ],
   "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#20c897",
+    "navigationBarTitleText": "一车一店",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "window1": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "一车一店",
@@ -20,19 +29,19 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "一车一店"
+        "text": "收益状况"
+      },
+      {
+        "pagePath": "pages/sale/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "我的货架"
       },
       {
         "pagePath": "pages/index/index",
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "一车一店"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "一车一店"
+        "text": "我的信息"
       }
     ]
   },
@@ -71,7 +80,8 @@
       "iconPath": "static/images/ic_menu_me_nor.png",
       "selectedIconPath": "static/images/ic_menu_me_pressed.png",
       "text": "我的"
-    },{
+    },
+    {
       "pagePath": "pages/qrcode/index",
       "iconPath": "static/images/ic_menu_choice_nor.png",
       "selectedIconPath": "static/images/ic_menu_choice_pressed.png",

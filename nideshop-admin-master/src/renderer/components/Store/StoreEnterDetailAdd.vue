@@ -3,8 +3,8 @@
     <div class="content-nav">
       <el-breadcrumb class="breadcrumb" separator="/">
         <el-breadcrumb-item :to="{ name: 'dashboard' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>商品管理</el-breadcrumb-item>
-        <el-breadcrumb-item>{{infoForm.id ? '编辑商品' : '添加商品'}}</el-breadcrumb-item>
+        <el-breadcrumb-item>入库清单项管理</el-breadcrumb-item>
+        <el-breadcrumb-item>{{infoForm.id ? '编辑入库清单项' : '添加入库清单项'}}</el-breadcrumb-item>
       </el-breadcrumb>
       <div class="operation-nav">
         <el-button type="primary" @click="goBackPage" icon="arrow-left">返回列表</el-button>
@@ -13,44 +13,6 @@
     <div class="content-main">
       <div class="form-table-box">
         <el-form ref="infoForm" :rules="infoRules" :model="infoForm" label-width="120px">
-          <!-- <el-form-item label="商品ID" prop="id">
-            <el-input v-model="infoForm.id"></el-input>
-            <div class="form-tip">商品ID,如:1234567; 添加商品的时候手动填写，值同商品sn一致，<font color="red">修改商品信息时，请勿修改</font></div>
-          </el-form-item> -->
-<!--           <el-form-item label="商品sn" prop="goods_sn">
-            <el-input v-model="infoForm.goods_sn"></el-input>
-            <div class="form-tip">商品sn,如:1234567; 添加商品的时候手动填写，值同商品ID一致，<font color="red">修改商品信息时，请勿修改</font></div>
-          </el-form-item>
-          <el-form-item label="商品名称" prop="name">
-            <el-input v-model="infoForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="商品价格" prop="retail_price">
-            <el-input v-model="infoForm.retail_price"></el-input>
-          </el-form-item> -->
-          <!-- <el-form-item label="所属分类">
-            <el-cascader :options="options" placeholder="请选择分类" v-model="selectedOptions" @change="handleChange">
-            </el-cascader>
-          </el-form-item> -->
- <!--          <el-form-item label="选择仓库" prop="brand_id">
-             <el-select v-model="infoForm.store_house_id" value-key="id" filterable placeholder="请选择" @change="handleSelectChageHouse">
-              <el-option
-                v-for="item in infoForm.allCategory.store_house"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="选择供货商" prop="brand_id">
-             <el-select v-model="infoForm.brand_name" value-key="id" filterable placeholder="请选择" @change="handleSelectChageBrand">
-              <el-option
-                v-for="item in infoForm.allCategory.brand"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
-              </el-option>
-            </el-select>
-          </el-form-item> -->
           <el-form-item label="选择产品" prop="brand_id">
              <el-select v-model="infoForm.product_id" value-key="id" filterable placeholder="请选择" @change="handleSelectChageProduct">
               <el-option
@@ -61,23 +23,31 @@
               </el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="入库数量" prop="number">
+            <el-input type="number"  v-model="infoForm.number"></el-input>
+          </el-form-item>
+                    <el-form-item label="进货价">
+                      <el-breadcrumb-item  >{{infoForm.price}}</el-breadcrumb-item>
+                    </el-form-item>
+                    <el-form-item label="批发价">
+                      <el-breadcrumb-item  >{{infoForm.trade_price}}</el-breadcrumb-item>
+                    </el-form-item>
+                    <el-form-item label="零售价">
+                      <el-breadcrumb-item  >{{infoForm.retail_price}}</el-breadcrumb-item>
+                    </el-form-item>
 
-
+          <!-- <el-form-item label="进货价" prop="price">
+            <el-input type="number"  v-model="infoForm.price"></el-input>
           </el-form-item>
-          <el-form-item label="入库数量" prop="enter_number">
-            <el-input type="number"  v-model="infoForm.enter_number"></el-input>
-          </el-form-item>
-          <el-form-item label="进货价" prop="buy_price">
-            <el-input type="number"  v-model="infoForm.buy_price"></el-input>
-          </el-form-item>
-          <el-form-item label="批发价" prop="buy_sale_price">
-            <el-input type="number"  v-model="infoForm.buy_sale_price"></el-input>
+          <el-form-item label="批发价" prop="trade_price">
+            <el-input type="number"  v-model="infoForm.trade_price"></el-input>
           </el-form-item>
           <el-form-item label="零售价" prop="retail_price">
             <el-input type="number"  v-model="infoForm.retail_price"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="上架">
-            <el-switch on-text="上架" off-text="下架" on-value="1" off-value="0" v-model="infoForm.is_on_sale"></el-switch>
+            <el-switch  v-model="infoForm.is_on_sale"></el-switch>
+            <!-- <el-switch on-text="上架" off-text="下架" on-value="1" off-value="0" v-model="infoForm.is_on_sale"></el-switch> -->
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmitInfo">确定保存</el-button>
@@ -96,24 +66,10 @@
     data() {
       return {
         uploaderHeader: {
-          'X-Nideshop-Token': localStorage.getItem('token') || '',
+          'X-ycyd-Token': localStorage.getItem('token') || '',
         },
 
         infoForm: {
-
-  // `id` bigint(20) NOT NULL,
-  // `store_enter_id` bigint(20) DEFAULT NULL COMMENT '入库编号',
-  // `goods_id` int(11) DEFAULT NULL COMMENT '商量编号',
-  // `product_id` int(11) DEFAULT NULL COMMENT '产品编号',
-  // `qr_code` varchar(255) DEFAULT NULL COMMENT '二维码',
-  // `ean_code` varchar(255) DEFAULT NULL COMMENT '条形码',
-  // `enter_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '时间',
-  // `buy_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '进货价',
-  // `buy_sale_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '司机进货价',
-  // `retail_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '零售价',
-  // `enter_number` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
-  // `is_on_sale` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否销售',
-
           id  :0                         //bigint(20) NOT NULL,
           ,store_enter_id  :0             //bigint(20) NOT NULL,
           ,goods_id        :0             //int(11) DEFAULT NULL COMMENT '商量编号',
@@ -122,11 +78,11 @@
           ,wx_code         :''            //varchar(255) DEFAULT NULL COMMENT '微信二维码',
           ,ean_code        :''            //varchar(255) DEFAULT NULL COMMENT '条形码',
           ,enter_time      :''            //datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '时间',
-          ,buy_price       :0             //decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '进货价',
-          ,buy_sale_price  :0             //decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '司机进货价',
+          ,price       :0             //decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '进货价',
+          ,trade_price  :0             //decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '司机进货价',
           ,retail_price    :0             //decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '零售价',
-          ,is_on_sale      :1            // tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否销售',
-          ,enter_number    :0             //int(11) DEFAULT NULL COMMENT '数量',
+          ,is_on_sale      :1          // tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否销售',
+          ,number    :0             //int(11) DEFAULT NULL COMMENT '数量',
           // ,allCategory     :{brand:[]  ,store_house:[],product:[]  };
           ,allCategory     :{}
           // ,brand_name      :''
@@ -135,7 +91,7 @@
           // name: [
           //   { required: true, message: '请输入名称', trigger: 'blur' },
           // ],
-          enter_number: [
+          number: [
             {required: true, min:1, max:5,message: '请输入5位以下数字', trigger: 'blur' },
           ],
         },
@@ -159,6 +115,9 @@
         var product = this.infoForm.allCategory.product.filter(function (e) { return e.product_id == val; });
 
         this.infoForm.goods_id =product[0].goods_id;
+        this.infoForm.price =product[0].price;
+        this.infoForm.trade_price =product[0].trade_price;
+        this.infoForm.retail_price =product[0].retail_price;
         console.log( this.infoForm.product_id );
         console.log( this.infoForm.goods_id );
       },

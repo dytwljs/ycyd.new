@@ -5,7 +5,7 @@
                 <img src="static/images/logo.png"/>
             </div>
             <div class="body">
-                <p class="tips">欢迎使用NideShop后台管理</p>
+                <p class="tips">欢迎使用一车一店后台管理</p>
                 <el-form ref="form" :model="form" :rules="rules" label-position="top">
                     <el-form-item label="" prop="username">
                         <!-- <el-input v-model="form.username" :placeholder="axios.defaults.baseURL+'sss'"></el-input> -->

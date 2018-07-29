@@ -37,11 +37,11 @@ router.beforeEach((to, from, next) => {
     let token = localStorage.getItem('token') || '';
 
     //配置接口信息
-    Axios.defaults.baseHOST = 'https://www.dytwljs.com';
-    // Axios.defaults.baseHOST = 'http://127.0.0.1:8360';
+    // Axios.defaults.baseHOST = 'https://www.dytwljs.com';
+    Axios.defaults.baseHOST = 'http://127.0.0.1:8360';
     Axios.defaults.baseURL = Axios.defaults.baseHOST + '/admin/';
     // Axios.defaults.baseURL = 'http://127.0.0.1:8360/admin/';
-    Axios.defaults.headers.common['X-Nideshop-Token'] = token;
+    Axios.defaults.headers.common['X-ycyd-Token'] = token;
 
     if (!token && to.name !== 'login') {
         next({

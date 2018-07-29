@@ -63,7 +63,7 @@
         data() {
             return {
                 uploaderHeader: {
-                    'X-Nideshop-Token': localStorage.getItem('token') || '',
+                    'X-ycyd-Token': localStorage.getItem('token') || '',
                 },
                 infoForm: {
                     id: 0,

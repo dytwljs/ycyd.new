@@ -9,7 +9,37 @@
                 <i class="fa fa-tachometer"></i>
                 <span>后台主页</span>
             </el-menu-item>
-            <el-submenu index="goods">
+                <el-menu-item index="/dashboard/category">
+                    <i class="fa fa-circle"></i>
+                    <span>商品分类</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/goods">
+                    <i class="fa fa-circle"></i>
+                    <span>商品列表</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/brand">
+                    <i class="fa fa-circle"></i>
+                    <span>供应商列表</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/order">
+                    <i class="fa fa-circle"></i>
+                    <span>订单列表</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/saleReg">
+                    <i class="fa fa-circle"></i>
+                    <span>经销商预登记</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/sale">
+                    <i class="fa fa-circle"></i>
+                    <span>经销商管理</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/storeEnter">
+                    <i class="fa fa-circle"></i>
+                    <span>库存管理</span>
+                </el-menu-item>
+
+
+ <!--            <el-submenu index="goods">
                 <template slot="title">
                     <i class="fa fa-product-hunt"></i>
                     <span>商品管理</span>
@@ -38,8 +68,8 @@
                     <i class="fa fa-circle"></i>
                     <span>商品疑问</span>
                 </el-menu-item>
-            </el-submenu>
-            <el-submenu index="order">
+            </el-submenu> -->
+ <!--            <el-submenu index="order">
                 <template slot="title">
                     <i class="fa fa-large fa-truck"></i>
                     <span>订单中心</span>
@@ -48,20 +78,32 @@
                     <i class="fa fa-circle"></i>
                     <span>订单列表</span>
                 </el-menu-item>
-                <!--<el-menu-item index="/dashboard/order/detail">-->
-                    <!--<i class="fa fa-circle"></i>-->
-                    <!--<span>发货单</span>-->
-                <!--</el-menu-item>-->
-                <!--<el-menu-item index="/dashboard/order/detail">-->
-                    <!--<i class="fa fa-circle"></i>-->
-                    <!--<span>退/换货</span>-->
-                <!--</el-menu-item>-->
-                <!--<el-menu-item index="/dashboard/order/detail">-->
-                    <!--<i class="fa fa-circle"></i>-->
-                    <!--<span>订单评价</span>-->
-                <!--</el-menu-item>-->
-            </el-submenu>
-            <el-submenu index="operate">
+            </el-submenu> -->
+
+ <!--            <el-submenu index="order">
+                <template slot="title">
+                    <i class="fa fa-large fa-truck"></i>
+                    <span>订单中心</span>
+                </template>
+                <el-menu-item index="/dashboard/order">
+                    <i class="fa fa-circle"></i>
+                    <span>订单列表</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/order/detail">
+                    <i class="fa fa-circle"></i>
+                    <span>发货单</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/order/detail">
+                    <i class="fa fa-circle"></i>
+                    <span>退/换货</span>
+                </el-menu-item>
+                <el-menu-item index="/dashboard/order/detail">
+                    <i class="fa fa-circle"></i>
+                    <span>订单评价</span>
+                </el-menu-item>
+            </el-submenu> -->
+
+ <!--            <el-submenu index="operate">
                 <template slot="title">
                     <i class="fa fa-large fa-truck"></i>
                     <span>店铺运营</span>
@@ -110,7 +152,7 @@
                     <i class="fa fa-circle"></i>
                     <span>会员列表</span>
                 </el-menu-item>
-            </el-submenu>
+            </el-submenu> -->
             <!--<el-submenu index="setting">-->
                 <!--<template slot="title">-->
                     <!--<i class="fa fa-large fa-wrench"></i>-->
@@ -129,7 +171,7 @@
                     <!--<span>首页设置</span>-->
                 <!--</el-menu-item>-->
             <!--</el-submenu>-->
-            <el-submenu index="shipper">
+ <!--            <el-submenu index="shipper">
                 <template slot="title">
                     <i class="fa fa-large fa-users"></i>
                     <span>快递公司</span>
@@ -148,7 +190,7 @@
                     <i class="fa fa-circle"></i>
                     <span>广告列表</span>
                 </el-menu-item>
-            </el-submenu>
+            </el-submenu> -->
         </el-menu>
     </div>
 </template>

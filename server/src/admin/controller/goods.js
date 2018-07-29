@@ -36,7 +36,7 @@ module.exports = class extends Base {
     const data = await model.where({
       id: id
     }).find();
-
+    data.allCategory= await this.model('category').select();
     return this.success(data);
   }
 
@@ -55,6 +55,8 @@ module.exports = class extends Base {
     var valuesProduct = {
       goods_id: values.id,
       goods_sn: values.goods_sn,
+      price: values.price,
+      trade_price: values.trade_price,
       retail_price: values.retail_price,
       goods_number: values.goods_number
     };
@@ -72,6 +74,7 @@ module.exports = class extends Base {
       values.id = values.goods_sn >> 0;
       const modelProduct = this.model('product');
       await model.add(values);
+      valuesProduct.goods_id=values.id;
       await modelProduct.add(valuesProduct);
     }
     return this.success(values);
