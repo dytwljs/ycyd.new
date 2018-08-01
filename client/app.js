@@ -50,7 +50,7 @@ App({
     //
 
   },
-
+  
   globalData: {
     scene: '',
     scene_type:'gue',
