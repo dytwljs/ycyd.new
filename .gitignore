@@ -16,7 +16,7 @@ pids
 #config.js
 #app.json
 #app.js
-client/config.js
+# client/config.js
 database.js
 .DS_Store
 .history
