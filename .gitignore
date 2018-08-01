@@ -79,8 +79,8 @@ client/project.config.json
 server/src/common/config/database.js
 nideshop-admin-master/package-lock.json
 nideshop-admin-master/package.json
-server/package-lock.json
-server/package.json
+# server/package-lock.json
+# server/package.json
 server/www/static/upload/brand/*.*
 server/www/static/upload/category/*.*
 server/www/static/user/avatar/*.*
