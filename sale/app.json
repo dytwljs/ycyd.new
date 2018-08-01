@@ -1,15 +1,17 @@
 {
   "pages": [
-    "pages/sale/index",
+    "pages/ucenter/index/index",
     "pages/index/index",
+    "pages/sale/index",
     "pages/ucenter/auth/login",
-    "pages/ucenter/welcome/index"
+    "pages/ucenter/welcome/index",
+    "pages/z_test/index"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
+    "backgroundTextStyle": "white",
     "navigationBarBackgroundColor": "#20c897",
     "navigationBarTitleText": "一车一店",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "window1": {
@@ -20,27 +22,31 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "backgroundColor": "#fafafa",
+    "backgroundColor1": "#fafafa",
+    "backgroundColor": "#20c897",
     "borderStyle": "white",
     "selectedColor": "#b4282d",
+    "selectedColor1": "yellow",
+    "color1": "#E6F3F9",
     "color": "#666",
+    "font": "10rpx",
     "list": [
       {
         "pagePath": "pages/index/index",
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "收益状况"
+        "text": "主页"
       },
       {
         "pagePath": "pages/sale/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "我的货架"
+        "iconPath": "static/images/ic_menu_shoping_nor.png",
+        "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+        "text": "进货"
       },
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
         "text": "我的信息"
       }
     ]

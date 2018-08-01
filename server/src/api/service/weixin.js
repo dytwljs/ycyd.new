@@ -70,12 +70,13 @@ module.exports = class extends think.Service {
    * 统一下单
    * g_销售订单和用户订单分开处理
    * @param payInfo
+   * @param orderType  0 ,销售进货单   1，网上订单  2，车上订单
    * @returns {Promise}
    */
-  createUnifiedOrder(payInfo, isSale = 0) {
+  createUnifiedOrder(payInfo, orderType = 0) {
     const WeiXinPay = require('weixinpay');
     const weixinpay = new WeiXinPay({
-      appid: think.config(isSale ? 'weixin.appid_sale' : 'weixin.appid'), // 微信小程序appid
+      appid: think.config(orderType ?  'weixin.appid':'weixin.appid_sale' ), // 微信小程序appid
       openid: payInfo.openid, // 用户openid
       mch_id: think.config('weixin.mch_id'), // 商户帐号ID
       partner_key: think.config('weixin.partner_key') // 秘钥
@@ -86,7 +87,7 @@ module.exports = class extends think.Service {
         out_trade_no: payInfo.out_trade_no,
         total_fee: payInfo.total_fee,
         spbill_create_ip: payInfo.spbill_create_ip,
-        notify_url: think.config(isSale ? 'weixin.notifySale_url' : 'weixin.notify_url'),
+        notify_url: think.config(orderType==0 ? 'weixin.notifySale_url' :(orderType==1 ? 'weixin.notify_url':'weixin.notifyTaxi_url')),
         trade_type: 'JSAPI'
       }, (res) => {
         if (res.return_code === 'SUCCESS' && res.result_code === 'SUCCESS') {

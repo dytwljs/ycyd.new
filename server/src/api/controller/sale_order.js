@@ -63,7 +63,7 @@ module.exports = class extends Base {
           out_trade_no: orderInfo.order_sn,
           total_fee:think.config('weixin.pay_test') ?1: parseInt(orderInfo.order_price * 100),
           spbill_create_ip: '' //g_mod
-        }, 1 //是销售订单
+        }, 0 //是销售订单
       );
 
       return this.success({

@@ -1,54 +1,93 @@
 <!-- pages/qrcode/index.wxml -->
 <wxs module="parses" src="../../utils/common.wxs" />
 <view class="container">
-  <view wx:for="{{storeSale}}" wx:key="{{item.id}}">
-    <view class="goods">
-      <view class="info">
-        <view class="t">
-          <text class="name">{{item.sale_name+'的小店'}}</text>
-        </view>
+  <view class='income'>
+    <view class='content' bindtap='goStoreDetail'>
+      <view class='left item'>库存
+        <text class='redText'>￥{{storeGain.store}}</text>
+      </view>
+      <view class='right item'>利润
+        <text class='redText'>￥{{storeGain.gain}}</text>
       </view>
     </view>
   </view>
-  <view class="scan">
-    <button class="b" bindtap='scan'>扫码</button>
-    <navigator target="miniProgram" open-type="navigate" app-id="wx1ca22e3163a07ec6" path="" extra-data="pages/category/category" version="release">打开绑定的小程序</navigator>
+  <view class="store-view" wx:if="{{storeList.length > 0}}">
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th td60">商品</view>
+        <view class="th td10">数量</view>
+        <view class="th  td10">进价</view>
+        <view class="th  td10">售价</view>
+        <view class="th  td10">利润</view>
+      </view>
+      <block wx:for="{{storeList}}" wx:key="{{item.id}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td td60">{{item.goods_name}}</view>
+          <view class="td td10">{{item.number}}</view>
+          <view class="td td10">{{item.trade_price}}</view>
+          <view class="td td10">{{item.retail_price}}</view>
+          <view class="td td10"  style='color:red'>{{(item.retail_price-item.trade_price)*item.number}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td td60">{{item.goods_name}}</view>
+          <view class="td td10">{{item.number}}</view>
+          <view class="td td10">{{item.trade_price}}</view>
+          <view class="td td10">{{item.retail_price}}</view>
+          <view class="td td10"  style='color:red'>{{(item.retail_price-item.trade_price)*item.number}}</view>
+        </view>
+      </block>
+    </view>
 
-    <button class="b" bindtap='toClient'>跳转</button>
   </view>
-  <view class="cart-view" wx:if="{{storeList.length > 0}}">
-    <view class="list">
-      <view class="group-item">
-        <view class="goods">
-          <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
-            <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
-            <view class="cart-goods">
-              <image class="img" src="{{parses.urlPrefix(item.list_pic_url,urlPrefix)}}"></image>
-              <view class="info">
-                <view class="b">
-                  <text class="name">{{item.goods_name}}</text>
-                </view>
-                <!-- <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}}</view> -->
-                <view class="b">
-                  <text class="price">￥{{item.retail_price}}</text>
-                  <!-- <view class="selnum">
-                    <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
-                    <input value="{{item.number}}" class="number" disabled="true" type="number" />
-                    <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
-                  </view> -->
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
+  <view class='income'>
+    <!-- <view class='content'>
+      
+    </view> -->
+    <view class='content' bindtap='goStoreDetail'>
+      <view class='left item'>当天  销售
+        <text class='redText'>￥{{todayGain.total}}</text>
+      </view>
+      <view class='right item'>利润
+        <text class='redText'>￥{{todayGain.gain}}</text>
       </view>
     </view>
-    <view class="cart-bottom">
-      <!-- <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-      <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
-      <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
-      <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view>
-      <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view> -->
+  </view>
+  <view class="store-view" wx:if="{{orderList.length > 0}}">
+    <view class="table">
+      <view class='tr bg-g'>
+      <view>最近销售记录</view>
+      </view>
+      <view class="tr bg-w">
+        <view class="th td10"></view>
+        <view class="th td40">客户</view>
+        <view class="th td20">时间</view>
+        <view class="th  td10">进价</view>
+        <view class="th  td10">售价</view>
+        <view class="th  td10">利润</view>
+      </view>
+      <block wx:for="{{orderList}}" wx:key="{{item.id}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td td10">
+              <image class="img" src="{{item.avatar}}"></image>
+          </view>
+          <view class="td td40">{{item.nickname}}</view>
+          <view class="td td20 date">{{item.date}}</view>
+          <view class="td td10">{{item.goods_price}}</view>
+          <view class="td td10">{{item.retail_price}}</view>
+          <view class="td td10 redText">{{item.retail_price-item.goods_price}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td td10">
+              <image class="img" src="{{item.avatar}}"></image>
+          </view>
+          <view class="td td40">{{item.nickname}}</view>
+          <view class="td td20 date">{{item.date}}</view>
+          <view class="td td10">{{item.goods_price}}</view>
+          <view class="td td10">{{item.retail_price}}</view>
+          <view class="td td10 redText">{{item.retail_price-item.goods_price}}</view>
+        </view>
+      </block>
     </view>
+
   </view>
 </view>

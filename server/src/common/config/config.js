@@ -11,6 +11,7 @@ module.exports = {
     ,partner_key: 'cecdb8040536dcc0afb7e3eca7bde0d5' // 微信支付密钥
     ,notify_url: 'https://www.dytwljs.com/api/pay/notify' // 微信异步通知，例：https://www.yc.com/api/pay/notify
     ,notifySale_url: 'https://www.dytwljs.com/api/pay/notifySale' //销售订单 微信异步通知，例：https://www.yc.com/api/pay/notify
+    ,notifyTaxi_url: 'https://www.dytwljs.com/api/pay/notifyTaxi' //车上订单 微信异步通知，例：https://www.yc.com/api/pay/notify
 
     ,urlToken: 'https://api.weixin.qq.com/cgi-bin/token'                          //获取二维码用
     ,urlWxCode: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='   //获取二维码用

@@ -1,0 +1,28 @@
+<view class="container">
+    <!-- <view class="profile-info">
+        <image  class="avatar" src="{{userInfo.avatar}}"></image>
+        <view class="info">
+        <text class="name">{{userInfo.nickname}}</text>
+        <text class="name">{{userInfo.mobile}}</text>
+        </view>
+    </view> -->
+    <view class="profile-info">
+      <open-data  class="avatar"  type="userAvatarUrl"></open-data>
+      <view class="info">
+        <open-data class="name" type="userNickName" lang="zh_CN"></open-data>
+        <text class="name">{{userInfo.mobile}}</text>
+      </view>
+    </view>
+    <view class="user-menu">   
+      <view class="table">
+        <view class="tr bg-g">
+          <view class="th td10"><image class='img' src=''> </image></view>
+          <view class="th ">进货订单</view>
+        </view>
+        <view class="tr bg-g">
+          <view class="th td10"><image class='img' src=''> </image></view>
+          <view class="th ">销售订单</view>
+        </view>
+      </view>     
+    </view>
+</view>

@@ -2,72 +2,68 @@ page{
     height: 100%;
     min-height: 100%;
     background: #f4f4f4;
+    /* border: 0;
+    margin: 0;
+    padding:0; */
 }
 .container{
     background: #f4f4f4;
     width: 100%;
     height: auto;
     min-height: 100%;
-    overflow: hidden;
+    overflow: hidden;   
 }
-.service-policy{
-    width: 750rpx;
-    height: 73rpx;
-    background: #f4f4f4;
-    padding: 0 31.25rpx;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.service-policy .item{
-    background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
-    background-size: 10rpx;
-    padding-left: 15rpx;
-    display: flex;
-    align-items: center;
-    font-size: 25rpx;
-    color: #666;
-}
-
-.no-cart{
+.scan{
+    background: #20c897;
     width: 100%;
-    height: auto;
-    margin: 0 auto;
+    height: 100rpx;
+    position: fixed;
+    top:0;
+    left:0;
+    text-align: center;
+    display: flex;
+    z-index: 99;
+    display:table-cell;
 }
 
-.no-cart .c{
+.scan .img{
+    background: #20c897;
+    width: 160rpx;
+    height: 80rpx;
+    border: none;
+    /* border-radius: 2%; */
+}
+.scan .code{
+    background: #20c897;
     width: 100%;
-    height: auto;
-    margin-top: 200rpx;
+    height: 80rpx;
+    border: none;
+    /* border-radius: 2%; */
+}
+button[class="code"]::after {
+  border: 0;
+} 
+
+.scan .bord{
+    background: #fff;
+    width: 100%;
+    height: 25rpx;
+    border: none;
+    /* border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%; */
 }
 
-.no-cart .c image{
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    width: 258rpx;
-    height: 258rpx;
-}
-
-.no-cart .c text{
-    margin: 0 auto;
-    display: block;
-    width: 258rpx;
-    height: 29rpx;
-    line-height: 29rpx;
-    text-align: center;
-    font-size: 29rpx;
-    color: #999;
-}
-
-
+button[class="bord"]::after {
+  border: 0;
+} 
 .cart-view{
+    background: #f4f4f4;
+    position: absolute;
+    overflow: auto;
+    top:100rpx;
     width: 100%;
-    height: auto;
-    overflow: hidden;
-    
 }
 
 .cart-view .list{
@@ -93,7 +89,8 @@ page{
     float: left;
     height: 34rpx;
     width: 34rpx;
-    margin: 65rpx 18rpx 65rpx 26rpx;
+    margin: 65rpx 28rpx 65rpx 16rpx;
+    /* margin: 65rpx 18rpx 65rpx 26rpx; */
     /* background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat; */
     background-size: 34rpx;
 }
@@ -136,7 +133,8 @@ page{
 
 .cart-view .item .name{
     height: 28rpx;
-    max-width: 310rpx;
+    max-width: 100%;
+    /* max-width: 315rpx; */
     line-height: 28rpx;
     font-size: 25rpx;
     color: #333;
@@ -175,7 +173,7 @@ page{
     width: 150rpx;
     display: block;
     float: right;
-    background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/arrowDown-d48093db25.png) right center no-repeat;
+    /* background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/arrowDown-d48093db25.png) right center no-repeat; */
     background-size: 25rpx;
     font-size: 25rpx;
     color: #333;
@@ -316,13 +314,13 @@ page{
     padding-left: 60rpx;
     line-height: 34rpx;
     margin: 33rpx 18rpx 33rpx 26rpx;
-    background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat;
+    /* background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat; */
     background-size: 34rpx;
     font-size: 29rpx;
 }
 
 .cart-bottom .checkbox.checked{
-    background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat;
+    /* background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat; */
     background-size: 34rpx;
 }
 

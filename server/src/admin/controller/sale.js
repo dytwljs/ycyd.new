@@ -274,33 +274,13 @@ module.exports = class extends Base {
     return this.success(data);
   }
 
-  // async createQr1(values) {
-  //   const mobile = values.mobile;
-
-  //   const qrPath_sale = think.config('weixin.qrPath_sale');
-  //   // const file =  values.username + '.' + values.mobile + '.jpg';
-  //   // const path = think.ROOT_PATH + "/www" + qrPath_sale +file;
-  //   // const file =  values.mobile + '.jpg';
-  //   const path = this.getFullPath(values.mobile);
-  //   values.qr_code = file;
-  //   // const appid = config.weixin.appid_sale;
-  //   const appid = think.config('weixin.appid');
-  //   const secret = think.config('weixin.secret');
-  //   // const appid = think.config('weixin.appid_sale');
-  //   // const secret = think.config('weixin.secret_sale');
-  //   const urlToken = think.config('weixin.urlToken');
-  //   const urlWxCode = think.config('weixin.urlWxCode');
-  //   const qrPage = think.config('weixin.qrPage');
-  //   const width = think.config('weixin.qr_width');
-  //   // const qrPath_sale = config.weixin.qrPath_sale;
-
-
-  //   qr.createQr(width, urlToken, urlWxCode, appid, secret, mobile, qrPage, path);
-  //   return values;
-  // }
   getFullPath(file) {
     return think.ROOT_PATH + "/www" + file;
   }
+  /*
+  *
+  * scene  'sal-'+mobile
+   */
   async createQr(mobile, path) {
     const appid = think.config('weixin.appid');
     const secret = think.config('weixin.secret');
@@ -311,8 +291,8 @@ module.exports = class extends Base {
     const qrPage = think.config('weixin.qrPage');
     const width = think.config('weixin.qr_width');
     // const qrPath_sale = config.weixin.qrPath_sale;
+    const scene  ='sal-'+mobile;
 
-
-    qr.createQr(width, urlToken, urlWxCode, appid, secret, mobile, qrPage, path);
+    qr.createQr(width, urlToken, urlWxCode, appid, secret, scene, qrPage, path);
   }
 };

@@ -20,6 +20,28 @@ parent.push({id:1221,name:'1_2_2_1',parent_id:	122});
 
 // console.log(parent);
 // getTree(12);
+// testSecneType();
+test1();
+function test1(){
+  var a=1;
+  if(1)
+    console.log('......1');
+    if(0)
+      console.log('......0');
+      if(2)
+        console.log('......2');
+}
+function testSecneType(){
+  // var scene='sal-2343423423';
+  var scene='1008';
+  var t,v;
+  if(scene.substr(0,4)=='sal-'){
+    t='sal';
+    v =scene.substr(4,scene.length-4);
+  }
+  console.log(t);
+  console.log(v);
+}
 function getTree(id) {
   parent.forEach(function (item) {
    if( item.parent_id==id&&item.parent_id!=item.id){

@@ -93,6 +93,31 @@ module.exports = class extends Base {
 
     return `<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>`;
   }
-  
+ 
+  async notifyTaxiAction() {
+    const WeixinSerivce = this.service('weixin', 'api');
+    const result = WeixinSerivce.payNotify(this.post('xml'));
+    if (!result) {
+      think.logger.fail('返回消息,支付失败');
+      return `<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[支付失败]]></return_msg></xml>`;
+    }
+
+    // const orderModel = this.model('order');
+    // const orderInfo = await orderModel.getOrderByOrderSn(result.out_trade_no);
+    const orderInfo=await this.model('order_taxi').where({order_sn :result.out_trade_no}).find();
+
+    if (think.isEmpty(orderInfo)) {
+      think.logger.err('订单不存在');
+      return `<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[订单不存在]]></return_msg></xml>`;
+    }
+
+    if (await this.model('order_taxi').where({id: orderInfo.id}).update({order_status: 301})) {
+    } else {
+      think.logger.err('订单不存在');
+      return `<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[订单不存在]]></return_msg></xml>`;
+    }
+
+    return `<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>`;
+  } 
 
 };

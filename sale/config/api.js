@@ -8,7 +8,9 @@ module.exports = {
   SaleOrderStatus:ApiRootUrl+'sale_order/status',   //修改销售订单状态
   StoreEan:ApiRootUrl+'store/ean',
   Z_Test:ApiRootUrl+'z_test/test',
-  StoreSale:ApiRootUrl+'store/index',
+
+  StoreList: ApiRootUrl + 'store/index',         //获取仓库库存数据
+  StoreSale: ApiRootUrl + 'store/sale',       //获取车上库存数据
 
 
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口

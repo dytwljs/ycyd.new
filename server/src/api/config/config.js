@@ -15,7 +15,8 @@ module.exports = {
     'z_test',
     'user',
     'sale',
-    'sale_order'
+    'sale_order',
+    'order_taxi'
   ],
 
   // 可以公开访问的Action

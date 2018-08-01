@@ -26,11 +26,33 @@ App({
       console.log('app login')
       this.globalData.userInfo = wx.getStorageSync('userInfo');
       this.globalData.token = wx.getStorageSync('token');
-      this.globalData.checkLogin=true;
-    }).catch((e) => {
-      console.log("App.js  user.checkLogin error")
-      console.log(e)
+      this.globalData.checkLogin = true;
+
+      if (this.globalData.userInfo.authorize < 9)
+        wx.navigateTo({
+          url: '../../pages/ucenter/auth/login',
+        });
+    }, function (err) {
+      wx.navigateTo({
+        url: '../../pages/ucenter/auth/login',
+      });
+
     });
+    // .catch((e) => {
+    //   wx.navigateTo({
+    //     url: '../../pages/ucenter/auth/login',
+    //   });
+    //   console.log("App.js  user.checkLogin error")
+    //   console.log(e)
+    // }).finish((e)=>{
+    //   var a=0;
+    // });
+    
+    // wx.navigateTo({
+    //   // url: 'pages/sale/index',
+    //   url: 'pages/z_test/index',
+    //   // url: 'pages/z_test/index',
+    // })
   },
   handOptions: function (options) {
     console.log(options);

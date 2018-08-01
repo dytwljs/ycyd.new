@@ -280,7 +280,7 @@ Page({
     // if (scene != 'undefined')
     //     this.handScene(scene);
     let that = this;
-    util.request(api.StoreSale).then(res => {
+    util.request(api.StoreList).then(res => {
       console.log(res);
       res.data.storeList.forEach(function (item) {
         console.log(item.goods_name);
@@ -307,6 +307,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var a=0;
     // this.test();
     // return;
     // if (app.globalData.userInfo.authorize<9) {
