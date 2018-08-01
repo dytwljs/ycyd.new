@@ -15,6 +15,9 @@ module.exports = {
   OrderTaxiAdd: ApiRootUrl + 'order_taxi/add',   //增加销售订单
   OrderTaxiStatus: ApiRootUrl + 'order_taxi/status',   //修改车上订单状态
 
+  OrderTaxiList: ApiRootUrl + 'order_taxi/list',   //取得车上订单
+  OrderTaxiDetailList: ApiRootUrl + 'order_taxi/detailList',   //取得车上订单详细
+
 
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
   CatalogList: ApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口

@@ -91,4 +91,13 @@ module.exports = class extends Base {
       return this.fail('更新订单状态失败  ');
     }
   }
+
+  async listAction(){
+
+    const orderList = await this.model('vw_store_pile_sale').where({
+      sale_id: think.userId
+    }).select();
+    return this.success({orderList:orderList});
+
+  }
 };

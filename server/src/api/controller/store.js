@@ -75,7 +75,7 @@ module.exports = class extends Base {
     return await this.getStoreSaleByMobile(mobile);
   }
 
-  async sale_sAction() {
+  async selfAction() {
     return await this.getStoreSale();
   }
   /**
