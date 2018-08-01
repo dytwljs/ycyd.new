@@ -26,7 +26,7 @@ module.exports = class extends Base {
    * 客户端根据司机手机号 获取对应司机入库表中的数据
    * @returns {Promise.<{cartList: *, cartTotal: {goodsCount: number, goodsAmount: number, checkedGoodsCount: number, checkedGoodsAmount: number}}>}
    */
-  async getStoreSale(mobile) {
+  async getStoreSaleByMobile(mobile) {
     const storeList = await this.model('vw_store_pile_sale').where({
       mobile: mobile
     }).select();
@@ -72,7 +72,7 @@ module.exports = class extends Base {
     let mobile = this.get('mobile');
     // return this.success(await this.getStoreSale(id));
 
-    return await this.getStoreSale(mobile);
+    return await this.getStoreSaleByMobile(mobile);
   }
 
   async sale_sAction() {
