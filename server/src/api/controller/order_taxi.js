@@ -93,11 +93,17 @@ module.exports = class extends Base {
   }
 
   async listAction(){
-
-    const orderList = await this.model('vw_store_pile_sale').where({
-      sale_id: think.userId
+    const orderList = await this.model('vw_order_taxi').where({
+      user_id: think.userId
     }).select();
     return this.success({orderList:orderList});
+  }
 
+  async detaillistAction(){
+    let order_id =this.get('id');
+    const detailList = await this.model('vw_order_taxi_detail').where({
+      order_taxi_id: order_id
+    }).select();
+    return this.success({detailList:detailList});
   }
 };

@@ -1,5 +1,16 @@
 var api = require('../config/api.js');
 
+//g_add 返回 MM-dd hh:mm时间
+function formatTimeMDHM(date) {
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+
+
+  return [month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
+}
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -153,6 +164,7 @@ function showErrorToast(msg) {
 }
 
 module.exports = {
+  formatTimeMDHM,
   formatTime,
   request,
   redirect,

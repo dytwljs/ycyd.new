@@ -35,7 +35,8 @@ Page({
       res.data.orderList.forEach(function(item){
         var t1 = new Date(item.add_time);
         var date = t1.getFullYear() + '-' + (t1.getMonth()+1) + '-' + t1.getDate();
-        var date1 = (t1.getMonth() + 1) + '-' + t1.getDate()+' '+t1.getHours()+':'+t1.getMinutes();
+        // var date1 = (t1.getMonth() + 1) + '-' + t1.getDate()+' '+t1.getHours()+':'+t1.getMinutes();
+        var date1 = util.formatTimeMDHM(t1);
         item.date=date1;
         if(today==date){
           todayGain.total+=item.retail_price;
