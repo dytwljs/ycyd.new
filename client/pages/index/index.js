@@ -315,6 +315,7 @@ Page({
     util.request(api.StoreSale,{mobile:app.globalData.scene}).then(res => {
       console.log(res);
       res.data.storeList.forEach(function (item) {
+        item.imgUrl = util.bindImgUrl(item.list_pic_url);
         console.log(item.goods_name);
         item.checked = false;
         item.check_number = 0;

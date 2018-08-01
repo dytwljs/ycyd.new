@@ -27,7 +27,8 @@
           <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
             <!-- <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view> -->
             <view class="cart-goods">
-              <image class="img" src="{{parses.urlPrefix(item.list_pic_url,urlPrefix)}}"></image>
+              <!-- <image class="img" src="{{parses.urlPrefix(item.list_pic_url,urlPrefix)}}"></image> -->
+              <image class="img" src="{{item.imgUrl}}"></image>
               <view class="info">
                 <view class="b">
                   <text class="name">{{item.goods_name}}</text>

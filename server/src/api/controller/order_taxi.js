@@ -99,7 +99,7 @@ module.exports = class extends Base {
     return this.success({orderList:orderList});
   }
 
-  async detaillistAction(){
+  async detailListAction(){
     let order_id =this.get('id');
     const detailList = await this.model('vw_order_taxi_detail').where({
       order_taxi_id: order_id

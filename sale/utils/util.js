@@ -1,5 +1,13 @@
 var api = require('../config/api.js');
 
+function bindImgUrl(url) {
+  if (!url)
+    return url;
+  if (url.substring(0, 7) == 'http://' || url.substring(0, 8) == 'https://')
+    return url;
+  return  api.HOST +url;
+
+}
 //g_add 返回 MM-dd hh:mm时间
 function formatTimeMDHM(date) {
   var month = date.getMonth() + 1
@@ -164,6 +172,7 @@ function showErrorToast(msg) {
 }
 
 module.exports = {
+  bindImgUrl,
   formatTimeMDHM,
   formatTime,
   request,
