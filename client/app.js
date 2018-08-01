@@ -41,6 +41,11 @@ App({
     if(scene.substr(0,4)=='sal-'){
       this.globalData.scene_type='sal';
       this.globalData.scene =scene.substr(4,scene.length-4);
+    }else if (scene.substr(0, 4) == 'cod-') {
+      this.globalData.scene_type = 'cod';
+      this.globalData.scene = scene.substr(4, scene.length - 4);
+    }else{
+
     }
     // wx.setStorageSync('scene','97574194493047655');
     // this.shareTicket='';
