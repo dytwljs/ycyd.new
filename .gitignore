@@ -75,6 +75,7 @@ Dc/client/app.json
 Dc/client/pages/test/test.js
 Dc/client/pages/test/test.wxml
 # client/config.js
+client/project.config.json
 server/src/common/config/database.js
 nideshop-admin-master/package-lock.json
 nideshop-admin-master/package.json
