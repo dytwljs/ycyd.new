@@ -1,2 +1,32 @@
 <!--pages/z_test/index.wxml-->
-<text>home</text>
+
+
+<view class="container">
+  <view class="store-view">
+    <view class="table">
+      <view class='tr bg-g'>
+        <view>最近销售记录</view>
+      </view>
+      <view class="tr bg-w">
+        <view class="th td20">头像</view>
+        <view class="th td20">客户</view>
+        <view class="th td40">时间</view>
+        <view class="th td20">进价</view>
+      </view>
+      <block>
+        <view wx:for="{{orderList}}" wx:for-item="item" wx:key="id">
+          <navigator url='/pages/cartContent/cartContent?id={{item.id}}'>
+            <view class="tr">
+              <view class="td td20">
+                <image class="img" src="{{item.avatar}}"></image>
+              </view>
+              <view class="td td20">{{item.sale_name}}</view>
+              <view class="td td40 date">{{item.pay_time}}</view>
+              <view class="td td20">{{item.retail_price}}</view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

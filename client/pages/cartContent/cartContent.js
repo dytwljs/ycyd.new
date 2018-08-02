@@ -1,4 +1,4 @@
-// pages/z_test/index.js
+// pages/cartContent/cartContent.js
 var api = require('../../config/api.js')
 var util = require('../../utils/util.js')
 Page({
@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList: {}
+    orderContent: {}
   },
 
   /**
@@ -15,10 +15,17 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    util.request(api.OrderTaxiList).then(res => {
+    console.log(options.id)
+    var data = {
+      id: options.id
+    }
+    util.request(api.OrderTaxiDetailList, data).then(res => {
       console.log(res.data)
+      res.data.detailList.forEach(function (item) {
+        item.imgUrl = util.bindImgUrl(item.list_pic_url);
+      });
       that.setData({
-        orderList: res.data.orderList
+        orderContent: res.data.detailList
       })
     })
   },
