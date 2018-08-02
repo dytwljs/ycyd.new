@@ -19,17 +19,18 @@ page{
     /* text-align: center; */
 }
 .income{
-  height: 150rpx;
+  height: 130rpx;
   width: 100%;
   text-align: center;
     background: #f4f4f4;
   padding: 20rpx;
 }
 .income .content{
-  height: 110rpx;
+  height: 90rpx;
   width: 100%;
   border-radius: 3%;
   background: #fff;
+  /* background: whitesmoke; */
 }
 
 .income .content .item{

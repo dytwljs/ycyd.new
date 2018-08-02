@@ -11,7 +11,8 @@
     </view>
   </view> -->
   <view class="scan">
-    <image src='/static/images/scan.png' class='img' bindtap='scan'></image>
+    <image src='/static/images/qrcode.gif' class='img' bindtap='scan'></image>
+    <!-- <image src='/static/images/scan.png' class='img' bindtap='scan'></image> -->
     <!-- <button class="code" bindtap='scan'>扫码</button> -->
     <button class="bord" ></button>
     <!-- <view class='bord'>\n</view> -->
