@@ -84,7 +84,7 @@ page{
 .bg-g{
   background: snow;
 }
-.th {
+.th { 
   /* width: 40%; */
   justify-content: center;
   background: #20c897;
