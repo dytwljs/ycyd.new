@@ -4,9 +4,9 @@
   </view>
   <view class='commdity'>
     <text>{{item.goods_name}}</text>
-    <text class='commdityPrice'>{{item.retail_price}}元</text>
+    <text class='commdityPrice' decode='true'>{{item.retail_price}}&nbsp;元</text>
     <view class='commditynumber'>
-      <text decode='true'>{{item.number}}件</text>
+      <text decode='true'>{{item.number}}&nbsp;件</text>
     </view>
   </view>
 
