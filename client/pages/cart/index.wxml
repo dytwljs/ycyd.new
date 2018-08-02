@@ -5,7 +5,7 @@
   <view class="store-view">
     <view class="table">
       <view class='tr bg-g'>
-        <view>最近销售记录</view>
+        <view>购买记录</view>
       </view>
       <view class="tr bg-w">
         <view class="th td20">头像</view>
