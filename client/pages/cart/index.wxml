@@ -9,9 +9,9 @@
       </view>
       <view class="tr bg-w">
         <view class="th td20">头像</view>
-        <view class="th td20">客户</view>
+        <view class="th td20">司机</view>
         <view class="th td40">时间</view>
-        <view class="th td20">进价</view>
+        <view class="th td20">单价/元</view>
       </view>
       <block>
         <view wx:for="{{orderList}}" wx:for-item="item" wx:key="id">
