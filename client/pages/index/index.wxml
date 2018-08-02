@@ -13,7 +13,7 @@
   <view class="scan">
     
     <button class="code"  bindtap='scan' >
-    <image src='/static/images/scan.png' class='img'></image>
+    <image src='/static/images/qrcode.gif' class='img'></image>
     </button>
     <!-- <view class='bord'>\n</view> -->
     <!-- <navigator target="miniProgram" open-type="navigate" app-id="wx1ca22e3163a07ec6" path="" extra-data="pages/category/category" version="release">打开绑定的小程序</navigator> -->
