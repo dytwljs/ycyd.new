@@ -1,0 +1,21 @@
+/* pages/cartContent/cartContent.wxss */
+.commodityboder{
+  width: 90%;
+  height: 300rpx;
+  background: #ffff;
+  display: flex;
+  margin-top: 5%;
+  margin-left: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+image{
+  width: 120rpx;
+  height: 120rpx;
+  display: flex;
+  margin-top: 80rpx;
+}
+.commdity text{
+  display: flex;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
