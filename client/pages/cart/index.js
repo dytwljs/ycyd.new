@@ -16,11 +16,7 @@ Page({
   onLoad: function(options) {
     var that = this
     util.request(api.OrderTaxiList).then(res => {
-      console.log(res.data);
-
       res.data.orderList.forEach(function(item) {
-        console.log(item)
-
         var t1 = new Date(item.add_time);
         item.date = util.formatTimeMDHM(t1);
       });
@@ -63,14 +59,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    var that = this
+    util.request(api.OrderTaxiList).then(res => {
+      res.data.orderList.forEach(function (item) {
+        var t1 = new Date(item.add_time);
+        item.date = util.formatTimeMDHM(t1);
+      });
+      // var date1 = util.formatTimeMDHM(res.data.orderList);
+      that.setData({
+        orderList: res.data.orderList
+      })
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    
   },
 
   /**
