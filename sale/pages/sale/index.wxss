@@ -37,7 +37,7 @@ page{
     /* border-radius: 2%; */
 }
 .scan .code{
-    background: #20c897;
+    /* background: #20c897; */
     width: 100%;
     height: 80rpx;
     border: none;

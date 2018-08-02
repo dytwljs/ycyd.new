@@ -16,34 +16,34 @@ Page({
     total_price: 0.00,
     total_price_sale: 0.00
   },
-  // handScene: function (scene) {
-  //   let that = this;
-  //   util.request(api.StoreSale, {
-  //         id: scene
-  //       },
-  //       "POST"
-  //     )
-  //     .then(function (res) {
-  //       if (res.errno === 0) {
-  //         console.log(res.data);
-  //         that.setData({
-  //           //storeList: res.data.storeList,
-  //           storeSale: res.data.storeSale
-  //         });
-  //         res.data.storeList.forEach(function (e) {
-  //           var store = that.data.storeList.find(st => {
-  //             if (st.id == e.id) return st;
-  //           });
-  //           if (store) e.checked = store.checked;
-  //           // e.checked=e.id==that.data.storeSale[0].id?true:false;
-  //           if (e.id == that.data.storeSale[0].id) e.checked = true;
-  //         });
-  //         that.setData({
-  //           storeList: res.data.storeList
-  //         });
-  //       }
-  //     });
-  // },
+  handScene: function (scene) {
+    let that = this;
+    // util.request(api.StoreSale, {
+    //       id: scene
+    //     },
+    //     "POST"
+    //   )
+    //   .then(function (res) {
+    //     if (res.errno === 0) {
+    //       console.log(res.data);
+    //       that.setData({
+    //         //storeList: res.data.storeList,
+    //         storeSale: res.data.storeSale
+    //       });
+    //       res.data.storeList.forEach(function (e) {
+    //         var store = that.data.storeList.find(st => {
+    //           if (st.id == e.id) return st;
+    //         });
+    //         if (store) e.checked = store.checked;
+    //         // e.checked=e.id==that.data.storeSale[0].id?true:false;
+    //         if (e.id == that.data.storeSale[0].id) e.checked = true;
+    //       });
+    //       that.setData({
+    //         storeList: res.data.storeList
+    //       });
+    //     }
+    //   });
+  },
   handEan: function (ean_code) {
     //根据条件码查找到商品，并移到第一位。
     let that = this;
@@ -97,6 +97,7 @@ Page({
   },
   getScene: function (path) {
     // var res = { path: 'pages/index/index?scene=832bb850-2162-4e42-7060796a2fb8' };
+    var a = decodeURIComponent(path);
     var scene = null;
     if (path.indexOf("?") != -1) {
       var param = path.split("?");

@@ -29,11 +29,18 @@ App({
       this.globalData.checkLogin = true;
     }, function(err) {
       console.log(err);
-    });
+      });
+    console.log('onLaunch   End');
+  },
+  onShow: function (options) {
+    console.log(options);
+    console.log(options.query.scene);
+    console.log('onShow    End');
+
   },
   handOptions: function(options) {
     console.log(options);
-    // console.log(options.scene);
+    console.log(options.query.scene);
     var scene = null;
     if (!options.query.scene) {
       this.globalData.scene_type = 'sal';
