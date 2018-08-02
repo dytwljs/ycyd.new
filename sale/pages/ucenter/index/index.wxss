@@ -1,8 +1,11 @@
 /* pages/ucenter/auth/login.wxss */
+page{
+    background: whitesmoke;
 
+}
 .container{
     text-align: center;
-    height: 100%;
+    height: 100%; 
 }
 
 .profile-info{
@@ -56,41 +59,54 @@
     /* margin-bottom: 10rpx; */
 }
 
-.user-menu{
-    width: 100%;
-    text-align: center;
-
-    height: auto;
-    overflow: hidden;
-    background: #fff;
-}
-/* 
-.user-menu .button{
-    width: 60%;
-    font-size: 36rpx;
-    text-align: center;
-    margin: 20%;
-    border: 5rpx solid silver;
-    border-radius: 3%;
-}
-.user-menu .vwExit{
-    text-align: center;  
-}
-.user-menu .exit{
-    width: 60%;
-    height: 100rpx;
-    font-size: 36rpx;
-    text-align: center;  
-    margin: 20%;
-} */
-.table{
+.store-view {
   width: 100%;
+  padding: 20rpx;
+    /* position: absolute;
+    overflow: auto; */
+  border: 1px solid white;
+  border-radius: 3%;
+}
+.table {
+  /* border: 1px solid darkgray; */
+  /* border: 1px solid #f4f4f4;
+  border-radius: 5%; */
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  height: 2rem;
+  align-items: left;
+}
+.td {
+    /* width:40%; */
+    justify-content: left;
+    text-align: left;
+    margin-top: 0.5rem;
+}
+.tdBorder{
+  border-bottom: 1px solid gainsboro;
+
+}
+
+.img{
+  
+  max-width: 16rpx;
   height: auto;
+  /* height: 26rpx; */
+  /* height: 48rpx; */
+
+  /* max-width: 100%; */
 }
-.tr{
-  /* text-align: left; */
-  height: 100rpx;
+.bg-w{
+  /* background: #E6F3F9; */
+  /* background: #20d897; */
 }
-.td10{
-  width: 10%;
+.bg-g{
+  /* background: snow; */
 }
+.td10{width: 10%;}
+.td15{width: 15%;}
+.td75{width: 75%;}
+.td85{width: 85%;}

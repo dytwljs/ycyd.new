@@ -13,15 +13,42 @@
         <text class="name">{{userInfo.mobile}}</text>
       </view>
     </view>
-    <view class="user-menu">   
+    <view class="store-view">   
       <view class="table">
-        <view class="tr bg-g">
-          <view class="th td10"><image class='img' src=''> </image></view>
-          <view class="th ">进货订单</view>
+        <view class="tr bg-g" bindtap='goSaleOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">我的二维码</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
         </view>
-        <view class="tr bg-g">
-          <view class="th td10"><image class='img' src=''> </image></view>
-          <view class="th ">销售订单</view>
+        <view class="tr bg-w" bindtap='goEnterOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">进货订单</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goSaleOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">销售订单</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-w" bindtap='goEnterOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">进帐流水</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goSaleOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">取现流水</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-w" bindtap='goEnterOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">联系我们</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goSaleOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">系统帮助</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
         </view>
       </view>     
     </view>

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/ucenter/index/index",
     "pages/index/index",
+    "pages/ucenter/index/index",
     "pages/sale/index",
     "pages/ucenter/auth/login",
     "pages/ucenter/welcome/index",
