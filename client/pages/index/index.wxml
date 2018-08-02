@@ -36,7 +36,7 @@
                 </view>
                 <!-- <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}}</view> -->
                 <view class="b">
-                  <text class="price">进价￥{{item.trade_price}}</text>
+                  <!-- <text class="price">进价￥{{item.trade_price}}</text> -->
                   <text class="price">售价￥{{item.retail_price}}</text>
                    <view class="selnum">
                     <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
