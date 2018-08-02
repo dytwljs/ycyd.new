@@ -1,41 +1,23 @@
-// pages/ucenter/index/index.js
+// pages/ucenter/qrcode/index.js
+
+var util = require("../../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+
+    qrcodeUrl: ''
   },
-  goQrCode: function () {
-    wx.navigateTo({      url: '/pages/ucenter/qrcode/index',})
-  },
-  goEnterOrder: function () {
-    wx.navigateTo({ url: '/pages/enterOrder/index', })
-  },
-  goSaleOrder: function () {
-    wx.navigateTo({ url: '/pages/saleOrder/index', })
-  },
-  goPayIn: function () {
-    wx.navigateTo({ url: '/pages/payIn/index', })
-  },
-  goPayOut: function () {
-    wx.navigateTo({ url: '/pages/payOut/index', })
-  },
-  goStoreHouse: function () {
-    wx.navigateTo({ url: '/pages/ucenter/storeHouse/index', })
-  },
-  goContact: function () {
-    wx.navigateTo({ url: '/pages/ucenter/contact/index', })
-  },
-  goHelp: function () {
-    wx.navigateTo({url: '/pages/ucenter/help/index',})
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      qrcodeUrl: util.bindImgUrl( getApp().globalData.userInfo.qr_code)
+    });
   },
 
   /**

@@ -88,10 +88,13 @@ module.exports = class extends Base {
     }
 
     // 查询用户信息
-    const newUserInfo = await this.model('sale').field(['id', 'openid', 'unionid', 'username', 'nickname', 'gender', 'avatar', 'birthday', 'mobile', 'authorize']).where({
+    // const newUserInfo = await this.model('sale').field(['id', 'openid', 'unionid', 'username', 'nickname', 'gender', 'avatar', 'birthday', 'mobile', 'authorize']).where({
+    //   openid: sessionData.openid
+    // }).find();
+
+    const newUserInfo = await this.model('vw_sale').field(['*']).where({
       openid: sessionData.openid
     }).find();
-
     // 更新登录信息
     await this.model('sale').where({
       id: userId

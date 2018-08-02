@@ -1,0 +1,5 @@
+<!--pages/ucenter/qrcode/index.wxml-->
+<!-- <text>pages/ucenter/qrcode/index.wxml</text> -->
+<view class='container'>
+<image class='img' src='{{qrcodeUrl}}'></image>
+</view>

@@ -5,7 +5,15 @@
     "pages/sale/index",
     "pages/ucenter/auth/login",
     "pages/ucenter/welcome/index",
-    "pages/z_test/index"
+    "pages/z_test/index",
+    "pages/ucenter/qrcode/index",
+    "pages/ucenter/contact/index",
+    "pages/ucenter/help/index",
+    "pages/enterOrder/index",
+    "pages/saleOrder/index",
+    "pages/payIn/index",
+    "pages/payOut/index",
+    "pages/ucenter/storeHouse/index"
   ],
   "window": {
     "backgroundTextStyle": "white",

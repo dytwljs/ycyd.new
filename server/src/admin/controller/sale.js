@@ -189,6 +189,7 @@ module.exports = class extends Base {
       const qrPath_sale = think.config('weixin.qrPath_sale');
       // const file= qrPath_sale + values.username + '.' + values.mobile + '.jpg';
       // // const path =think.ROOT_PATH + "/www" + file;'
+      // 
       const file = qrPath_sale + values.mobile + '.jpg';
       const path = this.getFullPath(file);
       var genQr=false;
