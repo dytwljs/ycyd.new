@@ -32,7 +32,7 @@ page{
     width: 75rpx;
     height: 75rpx;
     border: none;
-    background: white;
+    /* background: white; */
     margin-top: 5rpx;
     /* border-radius: 2%; */
 }

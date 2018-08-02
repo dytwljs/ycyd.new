@@ -4,10 +4,10 @@
   <view class='income'>
     <view class='content' bindtap='goStoreDetail'>
       <view class='left item'>库存
-        <text class='redText'>￥{{storeGain.store}}</text>
+        <text >￥{{storeGain.store}}</text>
       </view>
       <view class='right item'>利润
-        <text class='redText'>￥{{storeGain.gain}}</text>
+        <text class='redText'>￥{{(storeGain.gain*100)/100}}</text>
       </view>
     </view>
   </view>
@@ -48,7 +48,7 @@
     </view> -->
     <view class='content' bindtap='goStoreDetail'>
       <view class='left item'>当天  销售
-        <text class='redText'>￥{{todayGain.total}}</text>
+        <text >￥{{todayGain.total}}</text>
       </view>
       <view class='right item'>利润
         <text class='redText'>￥{{todayGain.gain}}</text>
@@ -77,7 +77,10 @@
           <view class="td td20 date">{{item.date}}</view>
           <view class="td td10">{{item.goods_price}}</view>
           <view class="td td10">{{item.retail_price}}</view>
-          <view class="td td10 "   style='color:red'>{{item.retail_price-item.goods_price}}</view>
+          <view class="td td10 "   style='color:red'>{{
+          ((item.retail_price-item.goods_price)*100)/100
+          
+          }}</view>
         </view>
         <view class="tr" wx:else>
           <view class="td td10">
@@ -87,8 +90,8 @@
           <view class="td td20 date">{{item.date}}</view>
           <view class="td td10">{{item.goods_price}}</view>
           <view class="td td10">{{item.retail_price}}</view>
-          <view class="td td10"  style='color:red'>{{item.retail_price-item.goods_price}}</view>
-        </view>
+          <view class="td td10 "   style='color:red'>{{((item.retail_price-item.goods_price)*100)/100}}</view>
+          </view>
       </block>
     </view>
 

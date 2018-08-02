@@ -26,6 +26,7 @@ Page({
         storeGain.store+=item.trade_price*item.number;
         storeGain.gain +=(item.retail_price- item.trade_price) * item.number;
       });
+      storeGain.gain = parseInt(100 * storeGain.gain)/100;
       //订单列表
       //当日利润统计  
 
@@ -43,6 +44,8 @@ Page({
           todayGain.gain += (item.retail_price - item.order_price);
         }
       });
+
+      todayGain.gain = parseInt(100 * todayGain.gain) / 100;
       that.setData({
         storeList: res.data.storeList
         , orderList: res.data.orderList
