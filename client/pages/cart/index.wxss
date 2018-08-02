@@ -57,6 +57,7 @@
   justify-content: center;
   height: 1.5rem;
   align-items: center;
+  margin-top: 20rpx;
 }
 
 .td {
@@ -107,6 +108,7 @@
 .img {
   width: 60rpx;
   height: 60rpx;
-  /* display: flex;
-  margin-top: 2%; */
+  display: flex;
+  margin-top: 10rpx;
+  margin-left: 40rpx;
 }

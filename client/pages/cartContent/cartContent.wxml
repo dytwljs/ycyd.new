@@ -3,9 +3,12 @@
     <image src="{{item.imgUrl}}"></image>
   </view>
   <view class='commdity'>
-    <text>商品名称：{{item.goods_name}}</text>
-    <text>进货时间：{{item.leave_time}}</text>
-    <text>进化价格：{{item.retail_price}}元</text>
-    <text decode='true'>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：{{item.number}}件</text>
+    <text>{{item.goods_name}}</text>
+    <text class='commdityPrice' decode='true'>{{item.retail_price}}&nbsp;元</text>
+    <view class='commditynumber'>
+      <text decode='true'>{{item.number}}&nbsp;件</text>
+    </view>
   </view>
+
 </view>
+<!-- 商品名称：购买时间：商品单价：数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量： -->
