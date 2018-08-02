@@ -282,8 +282,9 @@ Page({
           'fail': function (res) {
             console.log('pay faild'); //支付失败，取消订单
             util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
-              console.log('支付失败，取消订单');
-
+              if(res.errno==0)
+                console.log('支付失败，取消订单');
+              console.log(res);
             });
             // reject(res);
           },
