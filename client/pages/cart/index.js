@@ -20,7 +20,9 @@ Page({
 
       res.data.orderList.forEach(function(item) {
         console.log(item)
-        item.date = util.formatTimeMDHM(item.add_time);
+
+        var t1 = new Date(item.add_time);
+        item.date = util.formatTimeMDHM(t1);
       });
       // var date1 = util.formatTimeMDHM(res.data.orderList);
       that.setData({
