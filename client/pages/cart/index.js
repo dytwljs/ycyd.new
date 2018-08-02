@@ -16,7 +16,12 @@ Page({
   onLoad: function(options) {
     var that = this
     util.request(api.OrderTaxiList).then(res => {
-      console.log(res.data)
+      console.log(res.data);
+
+      res.data.orderList.forEach(function (item) {
+        item.date = util.formatTimeMDHM(item.pay_time);
+      });
+      // var date1 = util.formatTimeMDHM(res.data.orderList);
       that.setData({
         orderList: res.data.orderList
       })
