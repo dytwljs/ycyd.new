@@ -13,6 +13,7 @@ module.exports = {
   StoreSale: ApiRootUrl + 'store/sale',       //获取车上库存数据
 
   OrderTaxiAdd: ApiRootUrl + 'order_taxi/add',   //增加销售订单
+  OrderTaxiCancel: ApiRootUrl + 'order_taxi/cancel',   //支付失败，取消订单
   OrderTaxiStatus: ApiRootUrl + 'order_taxi/status',   //修改车上订单状态
 
   OrderTaxiList: ApiRootUrl + 'order_taxi/list',   //取得车上订单

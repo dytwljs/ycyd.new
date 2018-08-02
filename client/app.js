@@ -14,7 +14,7 @@ var user = require('./services/user.js');
  */
 
 App({
-  onLaunch: function (options) {
+  onLaunch: function(options) {
     this.handOptions(options);
 
     // util.request(api.Z_Test,{},'POST').then(res=>{
@@ -27,25 +27,28 @@ App({
       this.globalData.userInfo = wx.getStorageSync('userInfo');
       this.globalData.token = wx.getStorageSync('token');
       this.globalData.checkLogin = true;
-    }, function (err) {
+    }, function(err) {
       console.log(err);
     });
   },
-  handOptions: function (options) {
+  handOptions: function(options) {
     console.log(options);
-    console.log(options.scene);
-    var scene = decodeURIComponent(options.query.scene);
-    scene='sal-13510118416';
-    //wx.setStorageSync('scene',scene);
-    this.globalData.scene = scene;
-    if(scene.substr(0,4)=='sal-'){
-      this.globalData.scene_type='sal';
-      this.globalData.scene =scene.substr(4,scene.length-4);
-    }else if (scene.substr(0, 4) == 'cod-') {
-      this.globalData.scene_type = 'cod';
-      this.globalData.scene = scene.substr(4, scene.length - 4);
-    }else{
-
+    // console.log(options.scene);
+    var scene = null;
+    if (!options.query.scene) {
+      this.globalData.scene_type = 'sal';
+      this.globalData.scene = '13510118416';
+      return;
+    } else {
+      scene = decodeURIComponent(options.query.scene);
+      if (scene.substr(0, 4) == 'sal-') {
+        this.globalData.scene_type = 'sal';
+        this.globalData.scene = scene.substr(4, scene.length - 4);
+      } else if (scene.substr(0, 4) == 'cod-') {
+        this.globalData.scene_type = 'cod';
+        this.globalData.scene = scene.substr(4, scene.length - 4);
+      } else {
+      }
     }
     // wx.setStorageSync('scene','97574194493047655');
     // this.shareTicket='';
@@ -55,19 +58,19 @@ App({
     //
 
   },
-  
+
   globalData: {
     scene: '',
-    scene_type:'gue',
+    scene_type: 'gue',
     saleInfo: {},
     userInfo: {
       nickname: 'Hi,游客',
       username: '点击去登录',
-      checkLogin:false,
+      checkLogin: false,
       // avatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
-      avatar: '/static/images/logo.png'
-      ,mobile:''
-      ,authorize:0
+      avatar: '/static/images/logo.png',
+      mobile: '',
+      authorize: 0
     },
     token: '',
     // pay_test:true

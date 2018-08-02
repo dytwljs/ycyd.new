@@ -280,7 +280,11 @@ Page({
             // resolve(res);
           },
           'fail': function (res) {
-            console.log('pay faild');
+            console.log('pay faild'); //支付失败，取消订单
+            util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
+              console.log('支付失败，取消订单');
+
+            });
             // reject(res);
           },
           'complete': function (res) {

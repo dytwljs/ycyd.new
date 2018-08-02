@@ -92,18 +92,50 @@ module.exports = class extends Base {
     }
   }
 
-  async listAction(){
+  async cancelAction() {
+    let id = this.get('id');
+    let model = this.model('order_taxi_detail')
+    try {
+      await model.startTrans();
+      let detail = await model.delete({
+        order_taxi_id: id
+      });
+      let order = await this.model('order_taxi').delete({
+        id: id
+      });
+      await model.commit();
+      return this.success('删除订单成功'+id);
+    } catch (e) {
+      await model.rollback();
+      return this.fail('删除订单失败'+id);
+    }
+    // if (await this.model('order_taxi').where({
+    //     id: id
+    //   }).update({
+    //     order_status: 1,
+    //     pay_time: ['exp', 'current_timestamp()']
+    //   })) {
+    //   return this.success(id);
+    // } else {
+    //   return this.fail('更新订单状态失败  ');
+    // }
+  }
+  async listAction() {
     const orderList = await this.model('vw_order_taxi').where({
       user_id: think.userId
     }).select();
-    return this.success({orderList:orderList});
+    return this.success({
+      orderList: orderList
+    });
   }
 
-  async detailListAction(){
-    let order_id =this.get('id');
+  async detailListAction() {
+    let order_id = this.get('id');
     const detailList = await this.model('vw_order_taxi_detail').where({
       order_taxi_id: order_id
     }).select();
-    return this.success({detailList:detailList});
+    return this.success({
+      detailList: detailList
+    });
   }
 };
