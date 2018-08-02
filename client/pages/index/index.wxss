@@ -28,8 +28,8 @@ page{
 
 .scan .img{
     background: #20c897;
-    width: 160rpx;
-    height: 100rpx;
+    width: 125rpx;
+    height: 75rpx;
     border: none;
 }
 .scan .code{
