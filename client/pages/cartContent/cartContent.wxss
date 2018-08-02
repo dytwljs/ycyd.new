@@ -1,21 +1,37 @@
 /* pages/cartContent/cartContent.wxss */
-.commodityboder{
+
+.commodityboder {
   width: 90%;
-  height: 300rpx;
+  height: 150rpx;
   background: #ffff;
   display: flex;
   margin-top: 5%;
   margin-left: 5%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-image{
-  width: 120rpx;
-  height: 120rpx;
+
+image {
+  width: 100rpx;
+  height: 100rpx;
   display: flex;
-  margin-top: 80rpx;
-}
-.commdity text{
-  display: flex;
-  margin-top: 30rpx;
+  margin-top: 25rpx;
   margin-left: 20rpx;
+}
+
+.commdity text {
+  display: flex;
+  margin-top: 20rpx;
+  margin-left: 50rpx;
+}
+
+.commdityPrice {
+  display: flex;
+  margin-top: 60rpx;
+  margin-left: 50rpx;
+}
+
+.commditynumber {
+  display: flex;
+  margin-left: 300rpx;
+  margin-top: -53rpx;
 }
