@@ -19,6 +19,7 @@ Page({
       console.log(res.data);
 
       res.data.orderList.forEach(function (item) {
+        console.log(item)
         item.date = util.formatTimeMDHM(item.pay_time);
       });
       // var date1 = util.formatTimeMDHM(res.data.orderList);
