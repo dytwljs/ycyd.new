@@ -91,14 +91,24 @@
   /* background: #20d897; */
 }
 
+.head {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 1.5rem;
+  align-items: center;
+  /* height: 100rpx; */
+  /* margin-top: 20rpx; */
+}
+
 .bg-g {
-  background: snow;
+  background: #20c897;
 }
 
 .th {
   /* width: 40%; */
   justify-content: center;
-  background: #20c897;
+  background: #aaa;
   color: #fff;
   display: flex;
   height: 1.5rem;
