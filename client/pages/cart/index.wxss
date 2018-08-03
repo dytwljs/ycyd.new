@@ -39,7 +39,7 @@
 
 .store-view {
   width: 100%;
-  padding: 1rpx;
+  padding: 8rpx;
   /* position: absolute;
     overflow: auto; */
   border: 1px solid white;
@@ -103,6 +103,10 @@
 
 .bg-g {
   background: #20c897;
+}
+.bg-g text{
+  display: flex;
+  margin-top: -20rpx;
 }
 
 .th {
