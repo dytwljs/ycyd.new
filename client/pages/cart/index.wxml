@@ -34,6 +34,7 @@
               </view>
             </view>
           </navigator>
+          <view class='underline'></view>
         </view>
       </block>
 

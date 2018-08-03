@@ -39,7 +39,7 @@
 
 .store-view {
   width: 100%;
-  padding: 20rpx;
+  padding: 1rpx;
   /* position: absolute;
     overflow: auto; */
   border: 1px solid white;
@@ -57,7 +57,7 @@
   justify-content: center;
   height: 1.5rem;
   align-items: center;
-  margin-top: 20rpx;
+  margin-top: 15rpx;
 }
 
 .td {
@@ -95,9 +95,9 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 1.5rem;
+  /* height: 1.5rem; */
   align-items: center;
-  /* height: 100rpx; */
+  height: 60rpx;
   /* margin-top: 20rpx; */
 }
 
@@ -108,7 +108,7 @@
 .th {
   /* width: 40%; */
   justify-content: center;
-  background: #aaa;
+  background: #c3c3c3;
   color: #fff;
   display: flex;
   height: 1.5rem;
@@ -121,4 +121,13 @@
   display: flex;
   margin-top: 10rpx;
   margin-left: 40rpx;
+}
+
+.underline {
+  border-top: 0.5rpx solid #c3c3c3;
+  width: 92%;
+  display: flex;
+  margin-top: 25rpx;
+  margin-left: 38rpx;
+
 }
