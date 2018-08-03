@@ -1,50 +1,33 @@
 <!-- pages/qrcode/index.wxml -->
 <wxs module="parses" src="../../utils/common.wxs" />
 <view class="container">
-  <!-- <view wx:for="{{storeSale}}" wx:key="{{item.id}}">
-    <view class="goods">
-      <view class="info">
-        <view class="t">
-          <text class="name">{{item.sale_name+'的小店'}}</text>
-        </view>
-      </view>
-    </view>
-  </view> -->
   <view class="scan">
-    
-    <button class="code"  bindtap='scan' >
-    <image src='/static/images/qrcode.gif' class='img'></image>
-    </button>
-    <!-- <view class='bord'>\n</view> -->
-    <!-- <navigator target="miniProgram" open-type="navigate" app-id="wx1ca22e3163a07ec6" path="" extra-data="pages/category/category" version="release">打开绑定的小程序</navigator> -->
 
-    <!-- <button class="b" bindtap='toClient'>跳转</button> -->
+    <button class="code" bindtap='scan'>
+      <image src='/static/images/qrcode.gif' class='img'></image>
+    </button>
   </view>
   <view class="cart-view" wx:if="{{storeList.length > 0}}">
-    <view class="list">
-      <view class="group-item">
-        <view class="goods">
-          <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
-          <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
-            <!-- <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view> -->
-            <view class="cart-goods">
-              <!-- <image class="img" src="{{parses.urlPrefix(item.list_pic_url,urlPrefix)}}"></image> -->
-              <image class="img" src="{{item.imgUrl}}"></image>
-              <view class="info">
-                <view class="b">
-                  <text class="name">{{item.goods_name}}</text>
-                </view>
-                <!-- <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}}</view> -->
-                <view class="b">
-                  <!-- <text class="price">进价￥{{item.trade_price}}</text> -->
-                  <text class="price">售价￥{{item.retail_price}}</text>
-                   <view class="selnum">
-                    <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
-                    <input value="{{item.check_number}}" class="number" disabled="true" type="number" />
-                    <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
-                  </view> 
-                </view>
-              </view>
+    <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
+      <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
+      <view class="cart-goods">
+        <image class="img" src="{{item.imgUrl}}"></image>
+        <view class="info">
+          <view class="b">
+            <text class="name">{{item.goods_name}}</text>
+          </view>
+          <view class="b">
+            <!-- <text class="price">进价￥{{item.trade_price}}</text> -->
+            <text class="price">售价</text>
+            <text class="price redText">￥{{item.retail_price}}</text>
+            <!-- <view class="price">售价
+            <text class="redText">￥{{item.retail_price}}</text>
+            </view> -->
+            
+            <view class="selnum">
+              <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
+              <input value="{{item.check_number}}" class="number {{item.check_number>0 ? 'blueText' : ''}}" disabled="true" type="number" />
+              <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
             </view>
           </view>
         </view>
@@ -52,18 +35,21 @@
     </view>
     <view class="cart-bottom" wx:if="{{isSelected}}">
       <view class="checkout" bindtap="deleteCart" wx:if="{{isSelected}}">删除所选</view>
-                    <view class='total'>总进价\n￥{{total_price}}\n 售价\n￥{{total_price_sale}}</view>
+      <!-- <view class='total'>总进价￥
+      <text class=" {{total_price>0 ? 'blueText' : ''}}" >
+      {{total_price}}</text>
+      \n 售价\n￥
+      {{total_price_sale}}      
+      </view> -->
+      <view class="total">总进价￥\n
+      {{total_price}}
+      \n 售价\n￥
+      {{total_price_sale}}     
+      </view>
       <!-- <view class="checkout"  wx:if="{{isSelected}}"> </view> -->
-      <button  wx:if="{{isSelected}}"  class="checkout" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <button wx:if="{{isSelected}}" class="checkout" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
         下单
-      </button>      
-     
-
-      <!-- <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-      <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
-      <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
-      <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view>
-      <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view> -->
+      </button>
     </view>
   </view>
 </view>

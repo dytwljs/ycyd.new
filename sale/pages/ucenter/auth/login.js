@@ -97,14 +97,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    });
-    if (app.globalData.userInfo.authorize==3){
-      user.getSaleInfo().then(res=>{
-        app.globalData.userInfo = res.data.saleInfo
-      });
-    } 
+    // this.setData({
+    //   userInfo: app.globalData.userInfo
+    // });
+    // if (app.globalData.userInfo.authorize==3){
+    //   user.getSaleInfo().then(res=>{
+    //     app.globalData.userInfo = res.data.saleInfo
+    //   });
+    // } 
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -116,6 +116,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
+    if (app.globalData.userInfo.authorize == 3) {
+      user.getSaleInfo().then(res => {
+        app.globalData.userInfo = res.data.saleInfo
+      });
+    } 
     if (app.globalData.userInfo.authorize==9) 
       wx.reLaunch({
         url: '/pages/index/index'
