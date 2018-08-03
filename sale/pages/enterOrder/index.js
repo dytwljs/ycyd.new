@@ -1,18 +1,28 @@
 // pages/enterOrder/index.js
+var util = require('../../utils/util.js');
+var api = require("../../config/api.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    SaleOrderList:[]
   
   },
 
+  getList: function () {
+    let that = this;
+    util.request(api.SaleOrderList,{ }).then(res => {
+      console.log(res);
+    });
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getList();
   },
 
   /**
@@ -47,7 +57,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.getList();  
   },
 
   /**

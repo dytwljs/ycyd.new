@@ -6,6 +6,8 @@ module.exports = {
   HOST:config.service.host,
   SaleOrderAdd:ApiRootUrl+'sale_order/add',   //增加销售订单
   SaleOrderStatus:ApiRootUrl+'sale_order/status',   //修改销售订单状态
+  SaleOrderCancel: ApiRootUrl + 'sale_order/cancel',   //支付失败，删除销售进货订单
+
   StoreEan:ApiRootUrl+'store/ean',
   Z_Test:ApiRootUrl+'z_test/test',
 
@@ -13,7 +15,7 @@ module.exports = {
   StoreSale: ApiRootUrl + 'store/sale',       //乘客获取车上库存数据
   SelfSale: ApiRootUrl + 'store/self',       //司机获取车上库存数据
 
-
+  SaleOrderList:ApiRootUrl+'sale_order/list',   //司机获取进货单列表
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
   CatalogList: ApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
   CatalogCurrent: ApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口

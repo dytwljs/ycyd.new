@@ -1,1 +1,96 @@
-/* pages/enterOrder/index.wxss */
+/* pages/z_test/index.wxss */
+page{
+    background: #f4f4f4;
+
+}
+.redText{
+  color: red;
+  font-size: 45rpx;
+}
+.img{
+  width: 48rpx;
+  height: 48rpx;
+}
+.date{
+  font-size: 20rpx;
+}
+.container{
+    background: #f4f4f4;
+    /* text-align: center; */
+}
+.income{
+  height: 130rpx;
+  width: 100%;
+  text-align: center;
+    background: #f4f4f4;
+  padding: 20rpx;
+}
+.income .content{
+  height: 90rpx;
+  width: 100%;
+  border-radius: 3%;
+  background: #fff;
+  /* background: whitesmoke; */
+}
+
+.income .content .item{
+  font-size: 45rpx;
+  width: 50%;
+  background: #fff;
+  margin-top: 22rpx;
+  height:auto;
+
+}
+.income .content .left{
+  float: left;
+  border-right: 1rpx solid #f4f4f4;
+}
+.income .content .right{
+    float: right;
+}
+.store-view {
+  width: 100%;
+  padding: 20rpx;
+    /* position: absolute;
+    overflow: auto; */
+  border: 1px solid white;
+  border-radius: 3%;
+}
+.table {
+  /* border: 1px solid darkgray; */
+  /* border: 1px solid #f4f4f4;
+  border-radius: 5%; */
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 1.5rem;
+  align-items: center;
+}
+.td {
+    /* width:40%; */
+    justify-content: center;
+    text-align: center;
+}
+.td10{width:10%;}
+.td20{width:20%;}
+.td40{width:40%;}
+.td60{width:60%;}
+
+.bg-w{
+  background: #E6F3F9;
+  /* background: #20d897; */
+}
+.bg-g{
+  background: snow;
+}
+.th { 
+  /* width: 40%; */
+  justify-content: center;
+  background: #20c897;
+  color: #fff;
+  display: flex;
+  height: 1.5rem;
+  align-items: center;
+}
