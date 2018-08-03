@@ -7,7 +7,7 @@
     <text class='commdityPrice' decode='true'>{{item.retail_price}}&nbsp;元</text>
     <view class='commditynumber'>
       <text decode='true'>{{item.number}}&nbsp;件</text>
-    </view>
+    </view> 
   </view>
 
 </view>
