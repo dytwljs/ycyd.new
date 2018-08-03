@@ -10,6 +10,8 @@ function bindImgUrl(url) {
 }
 //g_add 返回 MM-dd hh:mm时间
 function formatTimeMDHM(date) {
+  date = date.replace(/-/g, '/');
+  date =new Date(date);
   var month = date.getMonth() + 1
   var day = date.getDate()
 
