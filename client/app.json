@@ -38,16 +38,17 @@
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
         "text": "主页"
       },
+
       {
         "pagePath": "pages/cart/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "iconPath": "static/images/ic_menu_topic_nor.png",
+        "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
         "text": "订单"
       },
       {
         "pagePath": "pages/help/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
         "text": "我的信息"
       }
     ]
