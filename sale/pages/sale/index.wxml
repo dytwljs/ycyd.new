@@ -26,7 +26,7 @@
 
             <view class="selnum">
               <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
-              <input value="{{item.check_number}}" class="number" disabled="true" type="number" />
+              <input value="{{item.check_number}}" class="number  {{item.check_number>0 ? 'blueText' : ''}}" disabled="true" type="number" />
               <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
             </view>
           </view>
