@@ -206,6 +206,7 @@ Page({
     });
   },
   getUserInfo: function (e) {
+    let that=this;
     const userInfo = e.detail;
 
     if (!app.globalData.checkLogin) {
