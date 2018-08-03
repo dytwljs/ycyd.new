@@ -54,6 +54,7 @@ Page({
   getList: function () {
     var that = this
     util.request(api.OrderTaxiList).then(res => {
+      console.log(res)
       res.data.orderList.forEach(function (item) {
         var t1 = new Date(item.add_time);
         item.date = util.formatTimeMDHM(t1);
@@ -63,7 +64,6 @@ Page({
         orderList: res.data.orderList
       })
     })
-
   },
 
   /**

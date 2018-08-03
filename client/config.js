@@ -4,8 +4,18 @@
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 
+<<<<<<< HEAD
+// var host = 'https://www.dytwljs.com';
+// var host = 'http://localhost:8360';
+var host = 'http://192.168.1.106:8360';
+
 var host = 'https://www.dytwljs.com';
 // var host = 'http://localhost:8360';
+// 293205821e19d6a597eacfd6ec7f911964242ecd
+=======
+var host = 'https://www.dytwljs.com';
+// var host = 'http://localhost:8360';
+>>>>>>> fe31f97c10168fa698fbb25973ef3402b4deb4c6
 // var host = 'http://192.168.1.8:8360';
 // var host = 'https://f2rhcxzk.qcloud.la';
 //  var host = 'http://192.168.0.191:8360';

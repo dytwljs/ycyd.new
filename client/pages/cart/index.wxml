@@ -2,17 +2,23 @@
 
 
 <view class="container">
+  
+    <view class='head bg-g'>
+      <view>购买记录</view>
+    </view>
+  
   <view class="store-view">
     <view class="table">
-      <view class='tr bg-g'>
-        <view>购买记录</view>
-      </view>
+
+
       <view class="tr bg-w">
         <view class="th td20">头像</view>
         <view class="th td20">司机</view>
-        <view class="th td40">时间</view>
+        <view class="th td30">时间</view>
         <view class="th td20">单价/元</view>
+        <view class="th td10"> </view>
       </view>
+
       <block>
         <view wx:for="{{orderList}}" wx:for-item="item" wx:key="id">
           <navigator url='/pages/cartContent/cartContent?id={{item.id}}'>
@@ -23,10 +29,14 @@
               <view class="td td20">{{item.sale_name}}</view>
               <view class="td td40 date">{{item.date}}</view>
               <view class="td td20">{{item.retail_price}}</view>
+              <view class="td td10">
+                <text class='iconfont .icon-arrow-right-copy-copy-copy'></text>
+              </view>
             </view>
           </navigator>
         </view>
       </block>
+
     </view>
   </view>
 </view>
