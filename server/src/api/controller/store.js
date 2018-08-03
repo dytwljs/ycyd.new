@@ -22,6 +22,15 @@ module.exports = class extends Base {
       storeSale: storeSale
     });
   }
+
+
+  /**   暂未使用
+   * 客户端根据二维码 获取对应司机，入库表中的数据
+   * @returns {Promise.<{cartList: *, cartTotal: {goodsCount: number, goodsAmount: number, checkedGoodsCount: number, checkedGoodsAmount: number}}>}
+   */
+  async getStoreSaleByCode(mobile) {
+    return this.fail('code');
+  }
   /**
    * 客户端根据司机手机号 获取对应司机入库表中的数据
    * @returns {Promise.<{cartList: *, cartTotal: {goodsCount: number, goodsAmount: number, checkedGoodsCount: number, checkedGoodsAmount: number}}>}
@@ -69,10 +78,16 @@ module.exports = class extends Base {
    */
   async saleAction() {
 
-    let mobile = this.get('mobile');
+    // let mobile = this.get('mobile');
+    let scene = this.get('scene');
+    let scene_type = this.get('scene_type');
     // return this.success(await this.getStoreSale(id));
-
-    return await this.getStoreSaleByMobile(mobile);
+    if(scene_type=='sal')
+      return await this.getStoreSaleByMobile(scene);
+    else if(scene_type=='cod')
+      return await this.getStoreSaleByCode(scene);
+    else
+      return this.fail('');
   }
 
   async selfAction() {

@@ -96,35 +96,17 @@ module.exports = class extends Base {
     let id = this.get('id');
     let model = this.model('order_taxi_detail');
     try {
-    //   await model.startTrans();
-    //   let detail = await model.where({
-    //     order_taxi_id: id
-    //   }).delete;
-    //   let order = await this.model('order_taxi').where({
-    //     id: id
-    //   }).delete;
-    //   await model.commit();
-    let detail = await model.where({
-      order_taxi_id: id
-    }).delete();
-    let order = await this.model('order_taxi').where({
-      id: id
-    }).delete();
-      return this.success('删除订单成功'+ id);
+      let detail = await model.where({
+        order_taxi_id: id
+      }).delete();
+      let order = await this.model('order_taxi').where({
+        id: id
+      }).delete();
+      return this.success('删除订单成功' + id);
     } catch (e) {
       // await model.rollback();
-      return this.fail('删除订单失败'+ id);
+      return this.fail('删除订单失败' + id);
     }
-    // if (await this.model('order_taxi').where({
-    //     id: id
-    //   }).update({
-    //     order_status: 1,
-    //     pay_time: ['exp', 'current_timestamp()']
-    //   })) {
-    //   return this.success(id);
-    // } else {
-    //   return this.fail('更新订单状态失败  ');
-    // }
   }
   async listAction() {
     const orderList = await this.model('vw_order_taxi').where({

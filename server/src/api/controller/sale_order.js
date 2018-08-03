@@ -89,4 +89,28 @@ module.exports = class extends Base {
       return this.fail('更新订单状态失败  ');
     }
   }
+
+  async listAction() {
+    let list= await this.model('sale_order').where({
+        sale_id: think.userId
+      }).select();
+      return this.success({saleOrderList:list});
+  }
+
+  async cancelAction() {
+    let id = this.get('id');
+    let model = this.model('sale_order_detail');
+    try {
+      let detail = await model.where({
+        sale_order_id: id
+      }).delete();
+      let order = await this.model('sale_order').where({
+        id: id
+      }).delete();
+      return this.success('删除订单成功' + id);
+    } catch (e) {
+      // await model.rollback();
+      return this.fail('删除订单失败' + id);
+    }
+  }
 };

@@ -253,8 +253,13 @@ Page({
             // resolve(res);
           },
           'fail': function (res) {
-            console.log('pay faild');
-            // reject(res);
+            console.log(res);
+            console.log('pay faild'); //支付失败，取消订单
+            util.request(api.SaleOrderCancel, { id: orderInfo.id }).then(rest => {
+              if (res.errno == 0)
+                console.log('支付失败，取消订单');
+              console.log(rest);
+            });
           },
           'complete': function (res) {
             console.log(res);

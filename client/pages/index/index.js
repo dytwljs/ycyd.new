@@ -79,8 +79,11 @@ Page({
             return;
           }
           var scene = this.getScene(res.path);
-          this.handScene(scene);
           console.log(scene);
+          // this.handScene(scene);
+          app.handScene(scene);
+          if (app.globalData.scene_change)
+            that.getStoreSale();
         }
         if (res.scanType == "EAN_13") {
           // result: "6901028183222"
@@ -308,17 +311,13 @@ Page({
     this.setData({
       urlPrefix: api.HOST
     });
-    // // var scene = wx.getStorageSync('scene');
-    // var scene = app.globalData.scene;
-    // if (scene != 'undefined')
-    //     this.handScene(scene);
-    if(app.globalData.scene_type=="sal")
+    // if(app.globalData.scene_type=="sal")
       this.getStoreSale();
   },
   getStoreSale:function(){
 
     let that = this;
-    util.request(api.StoreSale,{mobile:app.globalData.scene}).then(res => {
+    util.request(api.StoreSale, { scene: app.globalData.scene, scene_type: app.globalData.scene_type}).then(res => {
       console.log(res);
       res.data.storeList.forEach(function (item) {
         item.imgUrl = util.bindImgUrl(item.list_pic_url);
@@ -348,6 +347,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(app.globalData.scene_change)
+      this.getStoreSale();
     var a=0;
     // this.test();
     // return;
@@ -372,7 +373,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    getStoreSale();
+  },
 
   /**
    * 页面上拉触底事件的处理函数
