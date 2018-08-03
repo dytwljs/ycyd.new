@@ -113,7 +113,7 @@
   /* width: 40%; */
   justify-content: center;
   background: #c3c3c3;
-  color: #fff;
+  color: black;
   display: flex;
   height: 1.5rem;
   align-items: center;
