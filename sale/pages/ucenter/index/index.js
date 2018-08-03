@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    userInfo:{}
   },
   goQrCode: function () {
     wx.navigateTo({      url: '/pages/ucenter/qrcode/index',})
@@ -49,7 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({ userInfo: getApp().globalData.userInfo});
   },
 
   /**

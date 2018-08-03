@@ -15,11 +15,33 @@ var user = require('./services/user.js');
 
 App({
   onLaunch: function (options) {
-    this.handOptions(options);
 
-    // util.request(api.Z_Test,{},'POST').then(res=>{
-    //   console.log(res);
+    // // util.request(api.Z_Test,{},'POST').then(res=>{
+    // //   console.log(res);
+    // // });
+
+    // this.handOptions(options);
+
+    // //获取用户的登录信息
+    // user.checkLogin().then(res => {
+    //   console.log('app login')
+    //   this.globalData.userInfo = wx.getStorageSync('userInfo');
+    //   this.globalData.token = wx.getStorageSync('token');
+    //   this.globalData.checkLogin = true;
+
+    //   if (this.globalData.userInfo.authorize < 9)
+    //     wx.navigateTo({
+    //       url: '../../pages/ucenter/auth/login',
+    //     });
+    // }, function (err) {
+    //   wx.navigateTo({
+    //     url: '../../pages/ucenter/auth/login',
+    //   });
+
     // });
+  },
+  onShow: function (options) {
+    this.handOptions(options);
 
     //获取用户的登录信息
     user.checkLogin().then(res => {
@@ -38,21 +60,7 @@ App({
       });
 
     });
-    // .catch((e) => {
-    //   wx.navigateTo({
-    //     url: '../../pages/ucenter/auth/login',
-    //   });
-    //   console.log("App.js  user.checkLogin error")
-    //   console.log(e)
-    // }).finish((e)=>{
-    //   var a=0;
-    // });
-    
-    // wx.navigateTo({
-    //   // url: 'pages/sale/index',
-    //   url: 'pages/z_test/index',
-    //   // url: 'pages/z_test/index',
-    // })
+
   },
   handOptions: function (options) {
     console.log(options);
