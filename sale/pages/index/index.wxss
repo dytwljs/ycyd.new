@@ -19,16 +19,16 @@ page{
     /* text-align: center; */
 }
 .income{
-  height: 130rpx;
+  height: 100rpx;
   width: 100%;
   text-align: center;
     background: #f4f4f4;
-  padding: 20rpx;
+  padding: 15rpx;
 }
 .income .content{
-  height: 90rpx;
+  height: 70rpx;
   width: 100%;
-  border-radius: 3%;
+  border-radius: 5%;
   background: #fff;
   /* background: whitesmoke; */
 }
@@ -37,7 +37,7 @@ page{
   font-size: 45rpx;
   width: 50%;
   background: #fff;
-  margin-top: 22rpx;
+  margin-top: 12rpx;
   height:auto;
 
 }

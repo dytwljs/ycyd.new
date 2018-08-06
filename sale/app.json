@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/ucenter/index/index",
     "pages/sale/index",
+    "pages/ucenter/index/index",
     "pages/ucenter/auth/login",
     "pages/ucenter/welcome/index",
     "pages/z_test/index",

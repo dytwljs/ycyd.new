@@ -171,9 +171,9 @@ function checkLogin() {
   });
 }
 
-function getSaleInfo(id){
+function SaleInfo(id){
   return new Promise(function (resolve, reject) {
-    return util.request(api.GetSaleInfo).then(res => {
+    return util.request(api.SaleInfo).then(res => {
       if (res.errno == 0) {
         //存储用户信息
           wx.setStorageSync('userInfo', res.data.saleInfo);
@@ -188,6 +188,22 @@ function getSaleInfo(id){
   });
 }
 
+function getSaleInfo(mobile) {
+  return new Promise(function (resolve, reject) {
+    return util.request(api.GetSaleInfo, { mobile: mobile}).then(res => {
+      if (res.errno == 0) {
+        //存储用户信息
+        //wx.setStorageSync('userInfo', res.data.saleInfo);
+        resolve(res);
+      } else {
+        reject(res);
+      }
+    }).catch((err) => {
+      reject(err);
+
+    })
+  });
+}
 function getUserInfo(id){
   return new Promise(function (resolve, reject) {
     return util.request(api.GetUserInfo).then(res => {
@@ -204,7 +220,33 @@ function getUserInfo(id){
     })
   });
 }
+
+function isLogin(){
+  wx.getUserInfo({
+    withCredentials: true,
+    success: function (res) {
+      //此处为获取微信信息后的业务方法
+    },
+    fail: function () {
+      //获取用户信息失败后。请跳转授权页面
+      wx.showModal({
+        title: '警告',
+        content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: '../ucenter/login',
+            })
+          }
+        }
+      })
+    }
+  })
+}
+
 module.exports = {
+  isLogin,
   loginByWeixin,
   checkLogin,
   getPhone,

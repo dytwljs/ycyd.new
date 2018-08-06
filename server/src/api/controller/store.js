@@ -39,7 +39,7 @@ module.exports = class extends Base {
     const storeList = await this.model('vw_store_pile_sale').where({
       mobile: mobile
     }).select();
-    const saleInfo = await this.model('sale').where({
+    const saleInfo = await this.model('vw_sale').where({
       mobile: mobile
     }).find();
     return this.success({

@@ -8,14 +8,16 @@
        <text style='color:white;font-size:25rpx;'>{{saleInfo.nickname}}\t的车店\t\t{{saleInfo.taxi_number}}</text>
 
   </view>
-  <view class="scan" bindtap='scan'>
-    <view class='avatar'>
-      <image class='avatarImg' src='{{saleInfo.avatar}}'></image>
+  <view class="top" bindtap='scan'>
+    <view>
+      <view class='avatar'>
+        <image class='avatarImg' src='{{saleInfo.avatar}}'></image>
+      </view>
+      <view class='code'>
+      <image src='/static/images/qrcode.gif' class='img'></image>
+      </view>
+      <view class='nickname'></view>  
     </view>
-    <view class='code'>
-    <image src='/static/images/qrcode.gif' class='img'></image>
-    </view>
-    <view class='nickname'></view>  
   </view>
   <view class="cart-view" wx:if="{{storeList.length > 0}}">
     <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">

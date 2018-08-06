@@ -8,7 +8,6 @@ page{
     height: auto;
     min-height: 100%;
     overflow: hidden;   
-    position: fixed;
 }
 .title{
     background: #20c897;
@@ -17,11 +16,11 @@ page{
     text-align: center;
 
 }
-.scan{
+.top{
     background: #20c897;
     width: 100%;
     /* width: 1500rpx; */
-    height: 100rpx;
+    height: 140rpx;
     position: fixed;
     text-align: center;
     display: flex;
@@ -32,6 +31,7 @@ page{
     border-bottom-right-radius: 100% 50rpx;
 }
 .scan .avatar{
+  height: 100rpx;
   width: 330rpx;
   float:left;
   text-align: left;

@@ -59,7 +59,6 @@ Page({
         // var t1 = new Date(item.add_time);
         item.date = util.formatTimeMDHM(item.add_time);
       });
-      // var date1 = util.formatTimeMDHM(res.data.orderList);
       that.setData({
         orderList: res.data.orderList
       })

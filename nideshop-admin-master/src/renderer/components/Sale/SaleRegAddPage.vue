@@ -30,8 +30,11 @@
                         <el-input v-model="infoForm.username"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="二维码" prop="name">
+                    <el-form-item label="二维码" prop="qr_code">
                       <img v-if="infoForm.qr_code" :src="axios.defaults.baseHOST+infoForm.qr_code" class="image-show">
+                    </el-form-item>
+                    <el-form-item label="车牌号  " prop="taxi_number">
+                        <el-input v-model="infoForm.taxi_number"></el-input>
                     </el-form-item>
 
                     <el-form-item label="通过授权">
@@ -106,7 +109,8 @@ export default {
       ],
       infoForm: {
         mobile: '',
-        username: "",
+        username: '',
+        taxi_number:'晋AT',
         parent_id: 0,
         desc: "",
         team_id: 0,

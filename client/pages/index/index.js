@@ -16,39 +16,15 @@ Page({
     total_price: 0.00,
     total_price_sale: 0.00
   },
-  handScene: function (scene) {
-    let that = this;
-    // util.request(api.StoreSale, {
-    //       id: scene
-    //     },
-    //     "POST"
-    //   )
-    //   .then(function (res) {
-    //     if (res.errno === 0) {
-    //       console.log(res.data);
-    //       that.setData({
-    //         //storeList: res.data.storeList,
-    //         storeSale: res.data.storeSale
-    //       });
-    //       res.data.storeList.forEach(function (e) {
-    //         var store = that.data.storeList.find(st => {
-    //           if (st.id == e.id) return st;
-    //         });
-    //         if (store) e.checked = store.checked;
-    //         // e.checked=e.id==that.data.storeSale[0].id?true:false;
-    //         if (e.id == that.data.storeSale[0].id) e.checked = true;
-    //       });
-    //       that.setData({
-    //         storeList: res.data.storeList
-    //       });
-    //     }
-    //   });
-  },
   handEan: function (ean_code) {
     //根据条件码查找到商品，并移到第一位。
     let that = this;
     let list = this.data.storeList;
-    let index = list.findIndex((element) => (element.ean_code==ean_code));
+    let index = list.findIndex((element) => (element.ean_code == ean_code));
+    if (index == -1) {
+      util.showErrorToast('本店无此商品');
+      return;
+    }
     var d = list.splice(index, 1);
     d[0].checked=true;
     //选择商品，并计算价格
@@ -80,7 +56,6 @@ Page({
           }
           var scene = this.getScene(res.path);
           console.log(scene);
-          // this.handScene(scene);
           app.handScene(scene);
           if (app.globalData.scene_change)
             that.getStoreSale();
@@ -91,6 +66,7 @@ Page({
         }
       },
       fail: err => {
+        util.showErrorToast('扫码错误');
         console.log(err);
       },
       complete: res => {
@@ -213,19 +189,15 @@ Page({
       user.loginByWeixin(userInfo, 'user').then(res => {
         app.globalData.userInfo = res.data.userInfo;
         app.globalData.token = res.data.token;
-        // if (app.globalData.userInfo.authorize == 9) {
-        //   wx.reLaunch({ url: '/pages/index/index' });
-        //   return;
-        // }
         that.setData({
           userInfo: res.data.userInfo
-          // ,isLogin: true
         });
+        this.checkoutOrder();
       }).catch((err) => {
         console.log(err)
       });
-    }
-    this.checkoutOrder();
+    }else
+      this.checkoutOrder();
   },
   checkoutOrder: function (e) {
     console.log('checkoutOrder');
@@ -264,8 +236,16 @@ Page({
       order_taxi: order_taxi
     };
     util.request(api.OrderTaxiAdd, data, 'POST').then(res => {
+      console.log(res);
+      if (res.return_code = 'FAIL') {
+        console.log(res.return_msg);  //生成支付信息失败，取消订单
+        // util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
+        //   if (res.errno == 0)
+        //     console.log('生成支付信息失败，取消订单');
+        //   console.log(res);
+        // });
+      }
       if (res.errno == 0) {
-        console.log(res);
         // const payParam = res.data;
         const payParam = res.data.payParam;
         const orderInfo = res.data.orderInfo;
@@ -312,7 +292,7 @@ Page({
     this.setData({
       urlPrefix: api.HOST
     });
-    // if(app.globalData.scene_type=="sal")
+    // // if(app.globalData.scene_type=="sal")
       this.getStoreSale();
   },
   getStoreSale:function(){
@@ -328,7 +308,7 @@ Page({
       });
       that.setData({
         storeList: res.data.storeList,
-        // saleInfo: res.data.saleInfo
+        saleInfo: res.data.saleInfo
         // storeSale: res.data.storeSale
       });
       app.globalData.saleInfo = res.data.saleInfo;
@@ -348,17 +328,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({ saleInfo:app.globalData.saleInfo});
     if(app.globalData.scene_change)
       this.getStoreSale();
-    var a=0;
-    // this.test();
-    // return;
-    // if (app.globalData.userInfo.authorize<9) {
-    // wx.navigateTo({
-    //   url: '../../pages/ucenter/auth/login',
-    // });
-    //   return;
-    // }
   },
 
   /**
@@ -375,7 +347,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    getStoreSale();
+    console.log('onPullDownRefresh');
+    // wx.showNavigationBarLoading();
+    this.getStoreSale();
+    // wx.stopPullDownRefresh;
+    // wx.hideNavigationBarLoading();
   },
 
   /**

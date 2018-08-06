@@ -12,8 +12,8 @@ Page({
     urlPrefix: null,
     storeList:[]
     ,orderList:[]
-    ,storeGain:{}
-    , todayGain:{}
+    , storeGain: { store:0,gain:0}
+    , todayGain: { total: 0, gain: 0}
   },
   getStoreSale: function () {
     let that = this;
@@ -34,10 +34,10 @@ Page({
       var t=new Date();
       var today = t.getFullYear() + '-' + (t.getMonth()+1) + '-' + t.getDate();
       res.data.orderList.forEach(function(item){
-        var t1 = new Date(item.add_time);
+        var t1 = new Date(item.add_time.replace(/-/g, '/'));
         var date = t1.getFullYear() + '-' + (t1.getMonth()+1) + '-' + t1.getDate();
         // var date1 = (t1.getMonth() + 1) + '-' + t1.getDate()+' '+t1.getHours()+':'+t1.getMinutes();
-        var date1 = util.formatTimeMDHM(t1);
+        var date1 = util.formatTimeMDHM(item.add_time);
         item.date=date1;
         if(today==date){
           todayGain.total+=item.retail_price;
@@ -65,7 +65,7 @@ Page({
     this.setData({
       urlPrefix: api.HOST
     });
-    this.getStoreSale();
+    // this.getStoreSale();
   },
 
   /**
@@ -79,6 +79,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getStoreSale();
   
   },
 

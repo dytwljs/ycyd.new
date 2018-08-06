@@ -29,7 +29,8 @@ module.exports = {
 
   GetUserInfo:ApiRootUrl + 'user/UserInfo', //获取用户信息
 
-  GetSaleInfo:ApiRootUrl + 'sale/info', //获取销售商信息
+  SaleInfo: ApiRootUrl + 'sale/info', //获取销售商信息
+  GetSaleInfo: ApiRootUrl + 'sale/get', //获取销售商信息
 
   GoodsCount: ApiRootUrl + 'goods/count',  //统计商品总数
   GoodsList: ApiRootUrl + 'goods/list',  //获得商品列表

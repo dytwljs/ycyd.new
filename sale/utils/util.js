@@ -5,11 +5,13 @@ function bindImgUrl(url) {
     return url;
   if (url.substring(0, 7) == 'http://' || url.substring(0, 8) == 'https://')
     return url;
-  return  api.HOST +url;
+  return api.HOST + url;
 
 }
 //g_add 返回 MM-dd hh:mm时间
 function formatTimeMDHM(date) {
+  date = date.replace(/-/g, '/');
+  date = new Date(date);
   var month = date.getMonth() + 1
   var day = date.getDate()
 
@@ -69,7 +71,7 @@ function request(url, data = {}, method = "GET") {
                   //存储用户信息
                   wx.setStorageSync('userInfo', res.data.userInfo);
                   wx.setStorageSync('token', res.data.token);
-                  
+
                   resolve(res);
                 } else {
                   reject(res);

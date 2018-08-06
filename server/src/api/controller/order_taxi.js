@@ -45,6 +45,7 @@ module.exports = class extends Base {
     } else
       return this.fail('插入订单失败');
     order_taxi.id = order_taxi_id;
+    
     return await this.prepay(order_taxi, userInfo.openid);
   }
 
@@ -111,7 +112,7 @@ module.exports = class extends Base {
   async listAction() {
     const orderList = await this.model('vw_order_taxi').where({
       user_id: think.userId
-    }).select();
+    }).order(['add_time desc']).select();
     return this.success({
       orderList: orderList
     });

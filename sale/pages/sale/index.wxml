@@ -1,10 +1,10 @@
 <!-- pages/qrcode/index.wxml -->
 <wxs module="parses" src="../../utils/common.wxs" />
 <view class="container">
-  <view class="scan">
-    <button class="code" bindtap='scan'>
-      <image src='/static/images/qrcode.gif' class='img'></image>
-    </button>
+  <view class="scan"  bindtap='scan'>    
+    <view class='code'>
+        <image src='/static/images/qrcode.gif' class='img'></image>
+    </view>
   </view>
   <view class="cart-view" wx:if="{{storeList.length > 0}}">
     <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
@@ -16,8 +16,6 @@
             <text class="name">{{item.goods_name}}</text>
           </view>
           <view class="b">
-            <!-- <text class="price">进价￥{{item.trade_price}}</text> -->
-            <!-- <text class="price">售价￥{{item.retail_price}}</text> -->
             <text class="price">进价</text>
             <text class="price redText">￥{{item.trade_price}}</text>
 

@@ -5,13 +5,19 @@ const createQr=require('../../common/utils/createQr.js');
 
 module.exports = class extends Base {
   async infoAction() {
-    
     const saleInfo = await this.model('sale').where({
       id: think.userId
     }).find();
     return this.success({saleInfo:saleInfo});
   }
 
+  async getAction() {
+    var mobile = this.get('mobile');
+    const saleInfo = await this.model('sale').where({
+      mobile: mobile
+    }).find();
+    return this.success({saleInfo:saleInfo});
+  }
   /**
    * 保存用户头像
    * @returns {Promise.<void>}

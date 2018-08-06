@@ -1,0 +1,60 @@
+<view class="container">
+    <!-- <view class="profile-info">
+        <image  class="avatar" src="{{userInfo.avatar}}"></image>
+        <view class="info">
+        <text class="name">{{userInfo.nickname}}</text>
+        <text class="name">{{userInfo.mobile}}</text>
+        </view>
+    </view> -->
+    <view class="profile-info">
+      <open-data  class="avatar"  type="userAvatarUrl"></open-data>
+      <view class="info">
+        <open-data class="name" type="userNickName" lang="zh_CN"></open-data>
+        <text class="name">{{userInfo.mobile}}</text>
+      </view>
+    </view>
+    <view class="store-view">   
+      <view class="table">
+        <!-- <view class="tr bg-g" bindtap='goQrCode'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">我的二维码</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-w" bindtap='goEnterOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">进货订单</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goSaleOrder'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">销售订单</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-w" bindtap='goPayIn'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">进帐流水</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goPayOut'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">取现流水</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-w" bindtap='goStoreHouse'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">补货点信息</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;'  src='/static/images/go.png'> </image></view>
+        </view> -->
+        <view class="tr bg-g" bindtap='goContact'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">联系我们</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+        <view class="tr bg-g" bindtap='goHelp'>
+          <view class="td td15"><image class='img' src='/static/images/go.png'> </image></view>
+          <view class="td td75 tdBorder">系统帮助</view>
+          <view class="td td10" style='text-align:right;'><image style='width:16rpx;height:26rpx;' src='/static/images/go.png'> </image></view>
+        </view>
+      </view>     
+    </view>
+</view>

@@ -9,7 +9,7 @@ Page({
    */
   data: {
     storeList: [],
-    // storeSale: [],
+    saleInfo:{},
     isEditCart: true,
     urlPrefix: null,
     isSelected: false,
@@ -18,41 +18,37 @@ Page({
   },
   handScene: function (scene) {
     let that = this;
-    util.request(api.StoreSale, {
-          id: scene
-        },
-        "POST"
-      )
-      .then(function (res) {
-        if (res.errno === 0) {
-          console.log(res.data);
-          that.setData({
-            //storeList: res.data.storeList,
-            storeSale: res.data.storeSale
-          });
-          res.data.storeList.forEach(function (e) {
-            var store = that.data.storeList.find(st => {
-              if (st.id == e.id) return st;
-            });
-            if (store) e.checked = store.checked;
-            // e.checked=e.id==that.data.storeSale[0].id?true:false;
-            if (e.id == that.data.storeSale[0].id) e.checked = true;
-          });
-          that.setData({
-            storeList: res.data.storeList
-          });
-        }
-      });
+    // util.request(api.StoreSale, {
+    //       id: scene
+    //     },
+    //     "POST"
+    //   )
+    //   .then(function (res) {
+    //     if (res.errno === 0) {
+    //       console.log(res.data);
+    //       that.setData({
+    //         //storeList: res.data.storeList,
+    //         storeSale: res.data.storeSale
+    //       });
+    //       res.data.storeList.forEach(function (e) {
+    //         var store = that.data.storeList.find(st => {
+    //           if (st.id == e.id) return st;
+    //         });
+    //         if (store) e.checked = store.checked;
+    //         // e.checked=e.id==that.data.storeSale[0].id?true:false;
+    //         if (e.id == that.data.storeSale[0].id) e.checked = true;
+    //       });
+    //       that.setData({
+    //         storeList: res.data.storeList
+    //       });
+    //     }
+    //   });
   },
   handEan: function (ean_code) {
     //根据条件码查找到商品，并移到第一位。
     let that = this;
     let list = this.data.storeList;
-    let index = list.findIndex((element) => (element.ean_code == ean_code));
-    if (index == -1) {
-      util.showErrorToast('本店无此商品');
-      return;
-    }
+    let index = list.findIndex((element) => (element.ean_code==ean_code));
     var d = list.splice(index, 1);
     d[0].checked=true;
     //选择商品，并计算价格
@@ -83,8 +79,11 @@ Page({
             return;
           }
           var scene = this.getScene(res.path);
-          this.handScene(scene);
           console.log(scene);
+          // this.handScene(scene);
+          app.handScene(scene);
+          if (app.globalData.scene_change)
+            that.getStoreSale();
         }
         if (res.scanType == "EAN_13") {
           // result: "6901028183222"
@@ -92,7 +91,6 @@ Page({
         }
       },
       fail: err => {
-        util.showErrorToast('扫码错误');
         console.log(err);
       },
       complete: res => {
@@ -102,6 +100,7 @@ Page({
   },
   getScene: function (path) {
     // var res = { path: 'pages/index/index?scene=832bb850-2162-4e42-7060796a2fb8' };
+    var a = decodeURIComponent(path);
     var scene = null;
     if (path.indexOf("?") != -1) {
       var param = path.split("?");
@@ -167,8 +166,8 @@ Page({
         that.setData({
           [checked]: false
         });
-
       }
+    this.afterCheck();
   },
   afterCheck: function () {
     this.getTotalPrice();
@@ -206,10 +205,30 @@ Page({
       isSelected: false
     });
   },
-  checkoutOrder: function () {
+  getUserInfo: function (e) {
+    let that=this;
+    const userInfo = e.detail;
+
+    if (!app.globalData.checkLogin) {
+      user.loginByWeixin(userInfo, 'user').then(res => {
+        app.globalData.userInfo = res.data.userInfo;
+        app.globalData.token = res.data.token;
+        that.setData({
+          userInfo: res.data.userInfo
+        });
+        this.checkoutOrder();
+      }).catch((err) => {
+        console.log(err)
+      });
+    }else
+      this.checkoutOrder();
+  },
+  checkoutOrder: function (e) {
+    console.log('checkoutOrder');
     //StoreLeave
     let that = this;
     let userInfo = getApp().globalData.userInfo;
+    let saleInfo =getApp().globalData.saleInfo;
     var storeList = [];
     var price = 0;
     var retail_price = 0;
@@ -221,24 +240,36 @@ Page({
         storeList.push(item);
       }
     });
-    var sale_order = {
-      store_house_id: that.data.storeList[0].store_house_id,
-      sale_id: userInfo.id,
+    var order_taxi = {
+      // store_house_id: that.data.storeList[0].store_house_id,
       goods_price: price,
       // order_price:app.globalData.pay_test?0.01: price,
       order_price:price,
-      retail_price:retail_price,
-      sale_name: userInfo.username,
-      mobile: userInfo.mobile
+      retail_price: retail_price,
+      user_id: userInfo.id,
+      user_name: userInfo.username,
+      user_mobile: userInfo.mobile,
+      sale_id: saleInfo.id,
+      sale_name: saleInfo.username,
+      sale_mobile: saleInfo.mobile
     };
     var data = {
       storeList: storeList,
       userInfo: userInfo,
-      sale_order: sale_order
+      saleInfo:saleInfo,
+      order_taxi: order_taxi
     };
-    util.request(api.SaleOrderAdd, data, 'POST').then(res => {
+    util.request(api.OrderTaxiAdd, data, 'POST').then(res => {
+      console.log(res);
+      if (res.return_code = 'FAIL') {
+        console.log(res.return_msg);  //生成支付信息失败，取消订单
+        // util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
+        //   if (res.errno == 0)
+        //     console.log('生成支付信息失败，取消订单');
+        //   console.log(res);
+        // });
+      }
       if (res.errno == 0) {
-        console.log(res);
         // const payParam = res.data;
         const payParam = res.data.payParam;
         const orderInfo = res.data.orderInfo;
@@ -251,20 +282,20 @@ Page({
           'success': function (res) {
             console.log(res);
             console.log('pay success'); 
-            util.request(api.SaleOrderStatus, {id:orderInfo.id}).then(res => {
+            util.request(api.OrderTaxiStatus, {id:orderInfo.id}).then(res => {
               console.log('更新支付状态成功'); 
 
             });
             // resolve(res);
           },
           'fail': function (res) {
-            console.log(res);
             console.log('pay faild'); //支付失败，取消订单
-            util.request(api.SaleOrderCancel, { id: orderInfo.id }).then(rest => {
-              if (res.errno == 0)
+            util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
+              if(res.errno==0)
                 console.log('支付失败，取消订单');
-              console.log(rest);
+              console.log(res);
             });
+            // reject(res);
           },
           'complete': function (res) {
             console.log(res);
@@ -285,29 +316,27 @@ Page({
     this.setData({
       urlPrefix: api.HOST
     });
-    // // var scene = wx.getStorageSync('scene');
-    // var scene = app.globalData.scene;
-    // if (scene != 'undefined')
-    //     this.handScene(scene);
-    this.getList();
+    // if(app.globalData.scene_type=="sal")
+      this.getStoreSale();
   },
-  getList: function () {
+  getStoreSale:function(){
+
     let that = this;
-    util.request(api.StoreList).then(res => {
+    util.request(api.StoreSale, { scene: app.globalData.scene, scene_type: app.globalData.scene_type}).then(res => {
       console.log(res);
       res.data.storeList.forEach(function (item) {
         item.imgUrl = util.bindImgUrl(item.list_pic_url);
-
         console.log(item.goods_name);
         item.checked = false;
         item.check_number = 0;
       });
       that.setData({
         storeList: res.data.storeList,
-        storeSale: res.data.storeSale
+        saleInfo: res.data.saleInfo
+        // storeSale: res.data.storeSale
       });
+      app.globalData.saleInfo = res.data.saleInfo;
     });
-
   },
   test: function () {
     util.request(api.Z_Test).then(res => {
@@ -323,7 +352,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getList();
+    this.setData({ saleInfo:app.globalData.saleInfo});
+    if(app.globalData.scene_change)
+      this.getStoreSale();
+    var a=0;
+    
     // this.test();
     // return;
     // if (app.globalData.userInfo.authorize<9) {
@@ -347,7 +380,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this.getStoreSale();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

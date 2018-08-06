@@ -3,28 +3,26 @@
 
 <view class="container">
   
-    <view class='head bg-g'>
-      <view><text>购买记录</text></view>
+    <view class='head'>
+      <text>消费记录</text>
     </view>
   
   <view class="store-view">
-    <view class="table">
-
-
-      <view class="tr bg-w">
-        <view class="th td20">头像</view>
-        <view class="th td20">司机</view>
-        <view class="th td30">时间</view>
-        <view class="th td20">单价/元</view>
-        <view class="th td10"> </view>
+    <!-- <view class="table"> -->
+      <view class="th ">
+        <view class="td td20"></view>
+        <view class="td td20">司机</view>
+        <view class="td td30">时间</view>
+        <view class="td td20">金额/元</view>
+        <view class="td td10"> </view>
       </view>
 
       <block>
         <view wx:for="{{orderList}}" wx:for-item="item" wx:key="id">
           <navigator url='/pages/cartContent/cartContent?id={{item.id}}'>
-            <view class="tr">
+            <view class="tr {{(index%2)==0?'bg-w':'bg-g'}}">
               <view class="td td20">
-                <image class="img" src="{{item.avatar}}"></image>
+                <image class="img" src="{{item.sale_avatar}}"></image>
               </view>
               <view class="td td20">{{item.sale_name}}</view>
               <view class="td td30 date">{{item.date}}</view>
@@ -34,10 +32,10 @@
               </view>
             </view>
           </navigator>
-          <view class='underline'></view>
+          <!-- <view class='underline'></view> -->
         </view>
       </block>
 
-    </view>
+    <!-- </view> -->
   </view>
 </view>
