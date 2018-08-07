@@ -101,6 +101,7 @@ module.exports = class extends Base {
       await this.model('cart').add(cartData);    //g_mod
       }catch(e)
       {
+        think.logger.error(e);
         console.log(e);
       }
     } else {

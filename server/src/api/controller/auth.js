@@ -25,12 +25,14 @@ module.exports = class extends Base {
     let sessionData = await rp(options);
     sessionData = JSON.parse(sessionData);
     if (!sessionData.openid) {
+      think.logger.error('登录失败,获取sessionData失败');
       return this.fail('登录失败,获取sessionData失败');
     }
     // 验证用户信息完整性
     const crypto = require('crypto');
     const sha1 = crypto.createHash('sha1').update(fullUserInfo.rawData + sessionData.session_key).digest('hex');
     if (fullUserInfo.signature !== sha1) {
+      think.logger.error('登录失败,验证用户信息完整性失败');
       return this.fail('登录失败,验证用户信息完整性失败');
     }
     // 解释用户数据
@@ -38,11 +40,13 @@ module.exports = class extends Base {
     // const weixinUserInfo = await WeixinSerivce.decryptUserInfoData(sessionData.session_key, fullUserInfo.encryptedData, fullUserInfo.iv);
     const weixinUserInfo = await WeixinSerivce.decryptUserInfoData(sessionData.session_key, fullUserInfo.encryptedData, fullUserInfo.iv, qs.appid);
     if (think.isEmpty(weixinUserInfo)) {
+      think.logger.error('登录失败,解析用户数据失败');
       return this.fail('登录失败,解析用户数据失败');
     }
     const newUserInfo = await this.HandleByType(sessionData, userType, weixinUserInfo, userInfo, clientIp);
 
     if (think.isEmpty(newUserInfo)) {
+      think.logger.error('登录失败,获取用户表信息失败');
       return this.fail('登录失败,获取用户表信息失败');
     }
     // sessionData.user_id = userId;
@@ -52,6 +56,7 @@ module.exports = class extends Base {
     const sessionKey = await TokenSerivce.create(sessionData);
 
     if (think.isEmpty(newUserInfo) || think.isEmpty(sessionKey)) {
+      think.logger.error('登录失败');
       return this.fail('登录失败');
     }
 

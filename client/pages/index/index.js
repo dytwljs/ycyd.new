@@ -8,15 +8,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: {
+      size: 10,
+      index,
+      total
+    },
     storeList: [],
-    saleInfo:{},
+    saleInfo: {},
     isEditCart: true,
     urlPrefix: null,
     isSelected: false,
     total_price: 0.00,
     total_price_sale: 0.00
   },
-  handEan: function (ean_code) {
+  handEan: function(ean_code) {
     //根据条件码查找到商品，并移到第一位。
     let that = this;
     let list = this.data.storeList;
@@ -26,15 +31,17 @@ Page({
       return;
     }
     var d = list.splice(index, 1);
-    d[0].checked=true;
+    d[0].checked = true;
     //选择商品，并计算价格
     d[0].check_number++;
     list.splice(0, 0, d[0]);
-    this.setData({ storeList: list });
+    this.setData({
+      storeList: list
+    });
     this.afterCheck();
 
   },
-  scan: function (e) {
+  scan: function(e) {
     let that = this;
     // 允许从相机和相册扫码
     wx.scanCode({
@@ -74,7 +81,7 @@ Page({
       }
     });
   },
-  getScene: function (path) {
+  getScene: function(path) {
     // var res = { path: 'pages/index/index?scene=832bb850-2162-4e42-7060796a2fb8' };
     var a = decodeURIComponent(path);
     var scene = null;
@@ -87,7 +94,7 @@ Page({
     return scene;
   },
 
-  checkedItem: function (event) {
+  checkedItem: function(event) {
     let itemIndex = event.target.dataset.itemIndex;
     var checked = "storeList[" + itemIndex + "].checked";
     this.setData({
@@ -102,7 +109,7 @@ Page({
       }
     this.afterCheck();
   },
-  addNumber: function (event) {
+  addNumber: function(event) {
     let itemIndex = event.target.dataset.itemIndex;
     var checkNumber = "storeList[" + itemIndex + "].check_number";
     this.setData({
@@ -117,7 +124,7 @@ Page({
     this.afterCheck();
   },
 
-  cutNumber: function (event) {
+  cutNumber: function(event) {
     let itemIndex = event.target.dataset.itemIndex;
     if (this.data.storeList[itemIndex].check_number == 0) return;
     var checkNumber = "storeList[" + itemIndex + "].check_number";
@@ -133,7 +140,7 @@ Page({
       }
     this.afterCheck();
   },
-  deleteCart: function () {
+  deleteCart: function() {
     let that = this;
     for (var i = 0; i < this.data.storeList.length; i++)
       if (this.data.storeList[i].checked) {
@@ -145,14 +152,14 @@ Page({
       }
     this.afterCheck();
   },
-  afterCheck: function () {
+  afterCheck: function() {
     this.getTotalPrice();
     this.getSelected();
   },
-  getTotalPrice: function () {
+  getTotalPrice: function() {
     var total = 0;
     var total_sale = 0;
-    this.data.storeList.forEach(function (item) {
+    this.data.storeList.forEach(function(item) {
       if (item.checked) {
         total += item.trade_price * item.check_number;
         total_sale += item.retail_price * item.check_number;
@@ -165,9 +172,9 @@ Page({
     });
 
   },
-  getSelected: function () {
+  getSelected: function() {
     try {
-      this.data.storeList.forEach(function (item) {
+      this.data.storeList.forEach(function(item) {
         if (item.checked)
           throw new Error('');
       });
@@ -181,8 +188,8 @@ Page({
       isSelected: false
     });
   },
-  getUserInfo: function (e) {
-    let that=this;
+  getUserInfo: function(e) {
+    let that = this;
     const userInfo = e.detail;
 
     if (!app.globalData.checkLogin) {
@@ -196,19 +203,19 @@ Page({
       }).catch((err) => {
         console.log(err)
       });
-    }else
+    } else
       this.checkoutOrder();
   },
-  checkoutOrder: function (e) {
+  checkoutOrder: function(e) {
     console.log('checkoutOrder');
     //StoreLeave
     let that = this;
     let userInfo = getApp().globalData.userInfo;
-    let saleInfo =getApp().globalData.saleInfo;
+    let saleInfo = getApp().globalData.saleInfo;
     var storeList = [];
     var price = 0;
     var retail_price = 0;
-    that.data.storeList.forEach(function (item) {
+    that.data.storeList.forEach(function(item) {
       // console.log(item.goods_name);
       if (item.checked) {
         price += item.trade_price * item.check_number;
@@ -220,7 +227,7 @@ Page({
       // store_house_id: that.data.storeList[0].store_house_id,
       goods_price: price,
       // order_price:app.globalData.pay_test?0.01: price,
-      order_price:price,
+      order_price: price,
       retail_price: retail_price,
       user_id: userInfo.id,
       user_name: userInfo.username,
@@ -232,13 +239,13 @@ Page({
     var data = {
       storeList: storeList,
       userInfo: userInfo,
-      saleInfo:saleInfo,
+      saleInfo: saleInfo,
       order_taxi: order_taxi
     };
     util.request(api.OrderTaxiAdd, data, 'POST').then(res => {
       console.log(res);
       if (res.return_code = 'FAIL') {
-        console.log(res.return_msg);  //生成支付信息失败，取消订单
+        console.log(res.return_msg); //生成支付信息失败，取消订单
         // util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
         //   if (res.errno == 0)
         //     console.log('生成支付信息失败，取消订单');
@@ -255,25 +262,29 @@ Page({
           'package': payParam.package,
           'signType': payParam.signType,
           'paySign': payParam.paySign,
-          'success': function (res) {
+          'success': function(res) {
             console.log(res);
-            console.log('pay success'); 
-            util.request(api.OrderTaxiStatus, {id:orderInfo.id}).then(res => {
-              console.log('更新支付状态成功'); 
+            console.log('pay success');
+            util.request(api.OrderTaxiStatus, {
+              id: orderInfo.id
+            }).then(res => {
+              console.log('更新支付状态成功');
 
             });
             // resolve(res);
           },
-          'fail': function (res) {
+          'fail': function(res) {
             console.log('pay faild'); //支付失败，取消订单
-            util.request(api.OrderTaxiCancel, { id: orderInfo.id }).then(res => {
-              if(res.errno==0)
+            util.request(api.OrderTaxiCancel, {
+              id: orderInfo.id
+            }).then(res => {
+              if (res.errno == 0)
                 console.log('支付失败，取消订单');
               console.log(res);
             });
             // reject(res);
           },
-          'complete': function (res) {
+          'complete': function(res) {
             console.log(res);
             console.log('pay complete');
             // reject(res);
@@ -288,19 +299,22 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       urlPrefix: api.HOST
     });
     // // if(app.globalData.scene_type=="sal")
-      this.getStoreSale();
+    this.getStoreSale();
   },
-  getStoreSale:function(){
+  getStoreSale: function() {
 
     let that = this;
-    util.request(api.StoreSale, { scene: app.globalData.scene, scene_type: app.globalData.scene_type}).then(res => {
+    util.request(api.StoreSale, {
+      scene: app.globalData.scene,
+      scene_type: app.globalData.scene_type
+    }).then(res => {
       console.log(res);
-      res.data.storeList.forEach(function (item) {
+      res.data.storeList.forEach(function(item) {
         item.imgUrl = util.bindImgUrl(item.list_pic_url);
         console.log(item.goods_name);
         item.checked = false;
@@ -314,7 +328,7 @@ Page({
       app.globalData.saleInfo = res.data.saleInfo;
     });
   },
-  test: function () {
+  test: function() {
     util.request(api.Z_Test).then(res => {
       console.log(res);
     });
@@ -322,31 +336,33 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.setData({ saleInfo:app.globalData.saleInfo});
-    if(app.globalData.scene_change)
+  onShow: function() {
+    this.setData({
+      saleInfo: app.globalData.saleInfo
+    });
+    if (app.globalData.scene_change)
       this.getStoreSale();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     console.log('onPullDownRefresh');
     // wx.showNavigationBarLoading();
     this.getStoreSale();
@@ -357,10 +373,10 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {}
+  onShareAppMessage: function() {}
 });

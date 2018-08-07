@@ -13,6 +13,7 @@ module.exports = class extends Base {
     const os = fs.createWriteStream(think.ROOT_PATH + "/www" + filename);
     is.pipe(os);
     os.on('error',(err)=>{
+      think.logger.error(err);
       console.log(err);
     })
     os.on('finish',()=>{

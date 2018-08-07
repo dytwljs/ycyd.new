@@ -17,7 +17,7 @@ Page({
   },
   getStoreSale: function () {
     let that = this;
-    util.request(api.SelfSale, { mobile: app.globalData.scene }).then(res => {
+    util.request(api.SelfSale, { }).then(res => {
       console.log(res);
       var storeGain={store:0,gain:0};
       //库存列表

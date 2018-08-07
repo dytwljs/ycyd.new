@@ -76,6 +76,7 @@ module.exports = class extends Base {
         id: id
       }).update(values);
     } catch (error) {
+      think.logger.error(error);
       console.log(error);
       return this.fail(error.errno, error.message);
     }
@@ -219,6 +220,7 @@ module.exports = class extends Base {
         await this.createQr(values.mobile, path);
       // values = await this.createQr1(values);
     } catch (error) {
+      think.logger.error(error);
       console.log(error);
       return this.fail(error.errno, error.message);
     }
@@ -253,6 +255,7 @@ module.exports = class extends Base {
       });
 
     } catch (error) {
+      think.logger.error(error);
       console.log(error);
       return this.fail(error.errno, error.message);
     }

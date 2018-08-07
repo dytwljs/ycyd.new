@@ -1,7 +1,6 @@
 const Base = require('./base.js');
 
 module.exports = class extends Base {
-
   // async ListAction(store_house_id) {
   //   return await this.getList(null, null);
   // }
@@ -22,8 +21,6 @@ module.exports = class extends Base {
       storeSale: storeSale
     });
   }
-
-
   /**   暂未使用
    * 客户端根据二维码 获取对应司机，入库表中的数据
    * @returns {Promise.<{cartList: *, cartTotal: {goodsCount: number, goodsAmount: number, checkedGoodsCount: number, checkedGoodsAmount: number}}>}
@@ -71,13 +68,11 @@ module.exports = class extends Base {
     let ean_code = this.post('ean_code');
     return this.success(null);
   }
-
   /**
    * 获取司机库存
    * @return {Promise} []
    */
   async saleAction() {
-
     // let mobile = this.get('mobile');
     let scene = this.get('scene');
     let scene_type = this.get('scene_type');

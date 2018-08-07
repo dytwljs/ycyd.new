@@ -76,6 +76,7 @@ module.exports = {
           // const base64 = wx.arrayBufferToBase64(res.data);
 
         }).catch(function (err) {
+          think.logger.error(err);
           console.log(err);
 
         });
@@ -83,6 +84,7 @@ module.exports = {
       }
 
     }).catch(function (err) {
+      think.logger.error(err);
       console.log(err);
     });
   }

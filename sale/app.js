@@ -40,8 +40,13 @@ App({
 
     // });
   },
+  onLoad: function (options) {
+    console.log('app onLoad');
+
+  },
   onShow: function (options) {
     this.handOptions(options);
+    // console.log('app onShow');
 
     //获取用户的登录信息
     user.checkLogin().then(res => {
@@ -50,18 +55,27 @@ App({
       this.globalData.token = wx.getStorageSync('token');
       this.globalData.checkLogin = true;
 
-      if (this.globalData.userInfo.authorize < 9)
-        wx.navigateTo({
-          url: '../../pages/ucenter/auth/login',
-        });
+      if (this.globalData.userInfo.authorize < 9) {
+        console.log('authorize-> ' + this.globalData.userInfo.authorize);
+        wx.reLaunch({ url: '/pages/ucenter/auth/login' });
+        // wx.navigateTo({
+        //   url: '../../pages/ucenter/auth/login'
+        // });
+      }
     }, function (err) {
-      wx.navigateTo({
-        url: '../../pages/ucenter/auth/login',
-      });
+      wx.reLaunch({ url: '/pages/ucenter/auth/login' });
+      console.log('user.checkLogin() err');
+      console.log(err);
 
     });
-
   },
+  onReady:function(option){
+    console.log('app.onReady');
+  },
+  onPageNotFound: function (options) {
+    console.log('app.onPageNotFound');
+  },
+  
   handOptions: function (options) {
     console.log(options);
     console.log(options.scene);

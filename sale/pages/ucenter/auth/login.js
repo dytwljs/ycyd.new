@@ -119,8 +119,10 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     });
-    if (app.globalData.userInfo.authorize == 3) {
+    if (app.globalData.userInfo.authorize == 3 || app.globalData.userInfo.authorize == 2) {
       user.getSaleInfo().then(res => {
+
+        wx.setStorageSync('userInfo', res.data.saleInfo);
         app.globalData.userInfo = res.data.saleInfo
       });
     } 
