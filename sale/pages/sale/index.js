@@ -201,13 +201,13 @@ Page({
     } catch (e) {
       this.setData({
         isSelected: true,
-        scrollHeight: app.globalData.windowHeight * 2 - 200     
+        scrollHeight: app.globalData.rpxHeight  - 200     
       });
       return;
     }
     this.setData({
       isSelected: false,
-      scrollHeight: app.globalData.windowHeight * 2 - 100   
+      scrollHeight: app.globalData.rpxHeight - 100   
     });
   },
   checkoutOrder: function () {
@@ -288,7 +288,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       urlPrefix: api.HOST,
-      scrollHeight: app.globalData.windowHeight*2-100      
+      scrollHeight: app.globalData.rpxHeight-100      
     });
     // // var scene = wx.getStorageSync('scene');
     // var scene = app.globalData.scene;

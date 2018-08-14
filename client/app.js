@@ -14,22 +14,36 @@ var user = require('./services/user.js');
  */
 
 App({
-  getWindowHeight: function () {
-    var height = 0;
+  getSystemInfo: function () {
+    var height = 0,width=0;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.screenWidth);       //手机屏幕宽度
-        console.log(res.screenHeight);      //手机屏幕高度
-        console.log(res.windowWidth);       //手机屏幕宽度
-        console.log(res.windowHeight);      //手机屏幕高度
+        // console.log(res.model)
+        // console.log(res.pixelRatio)
+        // // console.log(res.windowWidth)
+        // // console.log(res.windowHeight)
+        // console.log(res.language)
+        // console.log(res.version)
+        // console.log(res.platform)
+
+        // // console.log(res.screenWidth);       //手机屏幕宽度
+        // // console.log(res.screenHeight);      //手机屏幕高度
+        // // console.log(res.windowWidth);       //手机屏幕宽度
+        // // console.log(res.windowHeight);      //手机屏幕高度
+        // console.log(750/res.windowWidth);
         height = res.windowHeight;//此处this.globalData不可用？？
+        width=res.windowWidth;
       }
     });
-    this.globalData.windowHeight = height;
-    console.log(this.globalData.windowHeight);      //手机屏幕高度
+    // this.globalData.windowHeight = height;
+    // this.globalData.windowWidth = width;
+    this.globalData.rpxHeight =height*(750/width);
+    // console.log(this.globalData.windowHeight);      //手机屏幕高度
+    // console.log(this.globalData.windowWidth);      //手机屏幕高度
+    console.log(this.globalData.rpxHeight);      //手机屏幕高度rpx
   },
   onLaunch: function (options) {
-    this.getWindowHeight();
+    this.getSystemInfo();
     // this.handOptions(options);
     //获取用户的登录信息
     user.checkLogin().then(res => {
@@ -120,6 +134,8 @@ App({
       authorize: 0
     },
     token: '',
-    windowHeight:667
+    // windowHeight:667,
+    // windowWidth:375,
+    rpxHeight:1110
   }
 })

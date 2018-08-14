@@ -11,13 +11,17 @@ page{
     position: fixed;
 }
 .title{
+    display: flex;
+    position: fixed;
     background: #20c897;
     width: 100%;
     height: 40rpx;
-    text-align: center;
-
+    /* text-align: center; */
+  justify-content: center;
+  top:0;
 }
 .scan{
+  top:40rpx;
     background: #20c897;
     width: 100%;
     /* width: 1500rpx; */

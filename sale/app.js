@@ -14,21 +14,19 @@ var user = require('./services/user.js');
  */
 
 App({
-  getWindowHeight: function () {
-    var height = 0;
+  getSystemInfo: function () {
+    var height = 0, width = 0;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.screenWidth);       //手机屏幕宽度
-        console.log(res.screenHeight);      //手机屏幕高度
-        console.log(res.windowWidth);       //手机屏幕宽度
-        console.log(res.windowHeight);      //手机屏幕高度
         height = res.windowHeight;//此处this.globalData不可用？？
+        width = res.windowWidth;
       }
     });
-    this.globalData.windowHeight = height;
+    this.globalData.rpxHeight = height * (750 / width);
+    console.log(this.globalData.rpxHeight);      //手机屏幕高度rpx
   },
   onLaunch: function (options) {
-    this.getWindowHeight();
+    this.getSystemInfo();
     // // util.request(api.Z_Test,{},'POST').then(res=>{
     // //   console.log(res);
     // // });
@@ -117,7 +115,8 @@ App({
       ,authorize:0
     },
     token: '',
-    windowHeight: 667
+    windowHeight: 667,
+    rpxHeight:0
     // pay_test:true
   }
 })
