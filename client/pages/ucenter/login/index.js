@@ -1,4 +1,8 @@
 // pages/ucenter/login/index.js
+// var util = require("../../../utils/util.js");
+// var api = require("../../../config/api.js");
+var user = require("../../../services/user.js");
+var app=getApp();
 Page({
 
   /**
@@ -8,15 +12,31 @@ Page({
   
   },
   bindGetUserInfo: function (e) {
-    var that = this;
     //此处授权得到userInfo
     console.log(e.detail.userInfo);
     //接下来写业务代码
 
-    //最后，记得返回刚才的页面
-    wx.navigateBack({
-      delta: 1
-    })
+    let that = this;
+    const userInfo = e.detail;
+
+    if (!app.globalData.checkLogin) {
+      user.loginByWeixin(userInfo, 'user').then(res => {
+        app.globalData.userInfo = res.data.userInfo;
+        app.globalData.token = res.data.token;
+        // that.setData({
+        //   userInfo: res.data.userInfo
+        // });
+        // this.checkoutOrder();
+        //最后，记得返回刚才的页面
+        wx.navigateBack({
+          delta: 1
+        })
+      }).catch((err) => {
+        console.log(err)
+      });
+    } 
+    // else
+    //   this.checkoutOrder();
   },
   /**
    * 生命周期函数--监听页面加载

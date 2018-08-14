@@ -36,10 +36,11 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "扫码",
+					"id": 0,
+					"name": "1012: 长按图片识别二维码",
 					"pathName": "pages/index/index",
-					"scene": "1011"
+					"query": "scene=sal-17076468336",
+					"scene": "1012"
 				}
 			]
 		}

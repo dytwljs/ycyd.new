@@ -33,8 +33,43 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function (options) {
+    // if (!app.globalData.checkLogin) {
+    //   user.loginByWeixin(userInfo, 'user').then(res => {
+    //     app.globalData.userInfo = res.data.userInfo;
+    //     app.globalData.token = res.data.token;
+    //     that.setData({
+    //       userInfo: res.data.userInfo
+    //     });
+    //   }).catch((err) => {
+    //     console.log(err)
+    //   });
+    // } 
+    wx.getUserInfo({
+      withCredentials: true,
+      success: function (res) {
+        //此处为获取微信信息后的业务方法
+      },
+      fail: function () {
 
+        wx.navigateTo({
+          url: '../ucenter/login/index',
+        });
+        //获取用户信息失败后。请跳转授权页面
+        // wx.showModal({
+        //   title: '警告',
+        //   content: '尚未进行授权，请点击确定跳转到授权页面进行授权。',
+        //   success: function (res) {
+        //     if (res.confirm) {
+        //       // console.log('用户点击确定')
+        //       // wx.navigateTo({
+        //       //   url: '../ucenter/login/index',
+        //       // })
+        //     }
+        //   }
+        // })
+      }
+    })
   },
 
   /**
