@@ -7,6 +7,7 @@
     </view>
   </view>
   <view class="cart-view" wx:if="{{storeList.length > 0}}">
+  <scroll-view class='list' scroll-y='true' style='height:{{scrollHeight}}rpx;'>
     <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
       <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
       <view class="cart-goods">
@@ -31,6 +32,7 @@
         </view>
       </view>
     </view>
+    </scroll-view>
     <view class="cart-bottom" wx:if="{{isSelected}}">
       <view class="checkout" bindtap="deleteCart" wx:if="{{isSelected}}">删除所选</view>
       <view class='total'>总进价\n￥{{total_price}}\n 售价\n￥{{total_price_sale}}</view>

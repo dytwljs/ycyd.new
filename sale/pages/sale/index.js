@@ -14,7 +14,8 @@ Page({
     urlPrefix: null,
     isSelected: false,
     total_price: 0.00,
-    total_price_sale: 0.00
+    total_price_sale: 0.00,
+    scrollHeight:500
   },
   handScene: function (scene) {
     let that = this;
@@ -169,6 +170,7 @@ Page({
         });
 
       }
+    this.afterCheck();
   },
   afterCheck: function () {
     this.getTotalPrice();
@@ -198,12 +200,14 @@ Page({
       });
     } catch (e) {
       this.setData({
-        isSelected: true
+        isSelected: true,
+        scrollHeight: app.globalData.windowHeight * 2 - 200     
       });
       return;
     }
     this.setData({
-      isSelected: false
+      isSelected: false,
+      scrollHeight: app.globalData.windowHeight * 2 - 100   
     });
   },
   checkoutOrder: function () {
@@ -283,12 +287,14 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      urlPrefix: api.HOST
+      urlPrefix: api.HOST,
+      scrollHeight: app.globalData.windowHeight*2-100      
     });
     // // var scene = wx.getStorageSync('scene');
     // var scene = app.globalData.scene;
     // if (scene != 'undefined')
     //     this.handScene(scene);
+    
     this.getList();
   },
   getList: function () {

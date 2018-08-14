@@ -4,8 +4,8 @@
   <view class='title'>
     <!-- <text style='color:red;'>{{saleInfo.nickname}}</text>
       <text style='font-size:0.6rem;'>的车店</text>
-      (<text style='color:red;'>{{saleInfo.taxi_number}}</text>) -->   
-       <text style='color:white;font-size:25rpx;'>{{saleInfo.nickname}}\t的车店\t\t{{saleInfo.taxi_number}}</text>
+      (<text style='color:red;'>{{saleInfo.taxi_number}}</text>) -->
+    <text style='color:white;font-size:25rpx;'>{{saleInfo.nickname}}\t的车店\t\t{{saleInfo.taxi_number}}</text>
 
   </view>
   <view class="scan" bindtap='scan'>
@@ -13,32 +13,34 @@
       <image class='avatarImg' src='{{saleInfo.avatar}}'></image>
     </view>
     <view class='code'>
-    <image src='/static/images/qrcode.gif' class='img'></image>
+      <image src='/static/images/qrcode.gif' class='img'></image>
     </view>
-    <view class='nickname'></view>  
+    <view class='nickname'></view>
   </view>
   <view class="cart-view" wx:if="{{storeList.length > 0}}">
-    <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
-      <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
-      <view class="cart-goods">
-        <image class="img" src="{{item.imgUrl}}"></image>
-        <view class="info">
-          <view class="b">
-            <text class="name">{{item.goods_name}}</text>
-          </view>
-          <view class="b">
-            <text class="price">售价</text>
-            <text class="price redText">￥{{item.retail_price}}</text>
-            
-            <view class="selnum">
-              <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
-              <input value="{{item.check_number}}" class="number {{item.check_number>0 ? 'blueText' : ''}}" disabled="true" type="number" />
-              <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
+    <scroll-view class='list' scroll-y='true' style='height:{{scrollHeight}}rpx;'>
+      <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{storeList}}" wx:key="{{item.id}}">
+        <checkbox class="checkbox" checked="{{item.checked}}" bindtap="checkedItem" data-item-index="{{index}}"></checkbox>
+        <view class="cart-goods">
+          <image class="img" src="{{item.imgUrl}}"></image>
+          <view class="info">
+            <view class="b">
+              <text class="name">{{item.goods_name}}</text>
+            </view>
+            <view class="b">
+              <text class="price">售价</text>
+              <text class="price redText">￥{{item.retail_price}}</text>
+
+              <view class="selnum">
+                <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
+                <input value="{{item.check_number}}" class="number {{item.check_number>0 ? 'blueText' : ''}}" disabled="true" type="number" />
+                <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </scroll-view>
     <view class="cart-bottom" wx:if="{{isSelected}}">
       <view class="checkout" bindtap="deleteCart" wx:if="{{isSelected}}">删除所选</view>
       <!-- <view class='total'>总进价￥
@@ -47,10 +49,11 @@
       \n 售价\n￥
       {{total_price_sale}}      
       </view> -->
-      <view class="total">总进价￥\n
-      {{total_price}}
-      \n 售价\n￥
-      {{total_price_sale}}     
+      <view class="total">
+        <!-- 总进价￥\n
+      {{total_price}} -->
+        \n 合计\n￥
+        <text class='redText'>{{total_price_sale}}</text>
       </view>
       <!-- <view class="checkout"  wx:if="{{isSelected}}"> </view> -->
       <button wx:if="{{isSelected}}" class="checkout" open-type="getUserInfo" bindgetuserinfo="getUserInfo">

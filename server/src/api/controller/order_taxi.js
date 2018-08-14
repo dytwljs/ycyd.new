@@ -110,11 +110,14 @@ module.exports = class extends Base {
     }
   }
   async listAction() {
-    const orderList = await this.model('vw_order_taxi').where({
+    // const list = await this.model('vw_order_taxi').where({
+    //   user_id: think.userId
+    // }).order(['add_time desc']).select();
+    const list = await this.model('vw_order_taxi').where({
       user_id: think.userId
-    }).order(['add_time desc']).select();
+    }).order(['add_time desc']).field(['*']).page(this.get('currentPage') || 1, this.get('pageSize') || 10).countSelect();
     return this.success({
-      orderList: orderList
+      orderList: list
     });
   }
 

@@ -94,6 +94,8 @@ module.exports = class extends Base {
     let list= await this.model('sale_order').where({
         sale_id: think.userId
       }).select();
+      // const list = await this.model('sale_order').field(['*']).page(this.get('page') || 1, this.get('size') || 10).countSelect();
+
       return this.success({saleOrderList:list});
   }
 

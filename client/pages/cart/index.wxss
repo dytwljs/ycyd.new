@@ -2,84 +2,63 @@ page {
   background: #f4f4f4;
 }
 .container {
-  background: #f4f4f4;
+  background: #f4f4f4; 
+    /* position: fixed; */
+    width: 100%;
 }
-.income {
-  height: 150rpx;
+.redText{
+  color: red;
+}
+.top{
+  display: flex;
+  position: absolute;
   width: 100%;
-  text-align: center;
-  background: #f4f4f4;
-  padding: 20rpx;
-}
-
-.income .content {
-  height: 10rpx;
-  width: 100%;
-  border-radius: 3%;
-  background: #fff;
-}
-.income .content .item {
-  font-size: 45rpx;
-  width: 50%;
-  background: #fff;
-  margin-top: 22rpx;
-  height: auto;
-}
-/* 
-.income .content .left {
-  float: left;
-  border-right: 1rpx solid #f4f4f4;
-}
-
-.income .content .right {
-  float: right;
-} */
-
-.store-view {
-  width: 100%;
-  padding: 8rpx;
-  /* position: absolute;
-    overflow: auto; */
-  border: 1px solid white;
-  border-radius: 3%;
+  height: 120rpx;
+  font-weight:bold;
 }
 .head {
-  display: flex;
   width: 100%;
-  justify-content: center;
-  height: 1.5rem;
-  align-items: center;
-  vertical-align: middle;
-  /* height: 60rpx; */
-  /* margin-top: 20rpx; */
-}
-.text{
-  display: flex;
-  margin-top: 0.25rem;
-}
-.table {
-  /* border: 1px solid darkgray; */
-  /* border: 1px solid #f4f4f4;
-  border-radius: 5%; */
+  height: 60rpx;
+  position: fixed;
+  text-align: center;
+  margin-top:0.25rem;
 }
 
+.text{
+  color: red;
+}
 .th {
+  top:60rpx;
+  height: 60rpx;
+  position: fixed;
   justify-content: center;
   /* background: #c3c3c3; */
   background: gainsboro;
+  width: 100%;
   color: black;
   display: flex;
-  height: 1.8rem;
   align-items: center;
-  border-radius: 5%;
+  border-radius: 2%;
   font-weight: bold;
+    z-index: 99;
+}
+.store-view {
+  width: 100%;
+  padding: 8rpx;
+    overflow: auto;
+  border: 1px solid white;
+  border-radius: 2%;
+  position: absolute;
+  top:120rpx;
+}
+.table {
 }
 
 .tr {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 2.5rem;
+  height: 120rpx;
   align-items: center;
   /* margin-top: 15rpx; */
   border-bottom: 1px solid gainsboro;
@@ -98,8 +77,8 @@ page {
 }
 
 .img {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   margin-top: 0rpx;
   margin-left: 40rpx;

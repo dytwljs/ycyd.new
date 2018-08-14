@@ -14,7 +14,22 @@ var user = require('./services/user.js');
  */
 
 App({
-  onLaunch: function(options) {
+  getWindowHeight: function () {
+    var height = 0;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.screenWidth);       //手机屏幕宽度
+        console.log(res.screenHeight);      //手机屏幕高度
+        console.log(res.windowWidth);       //手机屏幕宽度
+        console.log(res.windowHeight);      //手机屏幕高度
+        height = res.windowHeight;//此处this.globalData不可用？？
+      }
+    });
+    this.globalData.windowHeight = height;
+    console.log(this.globalData.windowHeight);      //手机屏幕高度
+  },
+  onLaunch: function (options) {
+    this.getWindowHeight();
     // this.handOptions(options);
     //获取用户的登录信息
     user.checkLogin().then(res => {
@@ -28,7 +43,11 @@ App({
     console.log('onLaunch   End');
   },
   onShow: function (options) {
-    this.handOptions(options);
+    if (!this.globalData.scanInside)
+      this.handOptions(options);
+    else
+      this.globalData.scanInside = false;
+    // this.handOptions(options);
     console.log(options);
     console.log(options.query.scene);
     console.log('onShow    End');
@@ -37,10 +56,10 @@ App({
   handOptions: function(options) {
     console.log(options);
     console.log(options.query.scene);
-    var a = decodeURIComponent('sal-13510118416');
+    // var a = decodeURIComponent('sal-13510118416');
     if (!options.query.scene) {
-      this.globalData.scene_type = 'sal';
-      this.globalData.scene = '13510118416';
+      // this.globalData.scene_type = 'sal';
+      // this.globalData.scene = '13510118416';
       return;
     } else {
       this.handScene(options.query.scene);
@@ -86,6 +105,7 @@ App({
     this.globalData.scene_type = type;
   },
   globalData: {
+    scanInside:false,
     scene: '',
     scene_type: 'gue',
     scene_change :false,
@@ -100,6 +120,6 @@ App({
       authorize: 0
     },
     token: '',
-    // pay_test:true
+    windowHeight:667
   }
 })

@@ -8,18 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page: {
-      size: 10,
-      index,
-      total
-    },
     storeList: [],
     saleInfo: {},
     isEditCart: true,
     urlPrefix: null,
     isSelected: false,
     total_price: 0.00,
-    total_price_sale: 0.00
+    total_price_sale: 0.00,
+    scrollHeight: 500
   },
   handEan: function(ean_code) {
     //根据条件码查找到商品，并移到第一位。
@@ -42,6 +38,7 @@ Page({
 
   },
   scan: function(e) {
+    app.globalData.scanInside=true;
     let that = this;
     // 允许从相机和相册扫码
     wx.scanCode({
@@ -180,13 +177,17 @@ Page({
       });
     } catch (e) {
       this.setData({
-        isSelected: true
+        isSelected: true,
+        scrollHeight: app.globalData.windowHeight * 2 - 360   
       });
+      console.log(this.data.scrollHeight);
       return;
     }
     this.setData({
-      isSelected: false
+      isSelected: false,
+      scrollHeight: app.globalData.windowHeight * 2 - 260   
     });
+    console.log(this.data.scrollHeight);
   },
   getUserInfo: function(e) {
     let that = this;
@@ -301,7 +302,8 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      urlPrefix: api.HOST
+      urlPrefix: api.HOST,
+      scrollHeight: app.globalData.windowHeight * 2 - 260      
     });
     // // if(app.globalData.scene_type=="sal")
     this.getStoreSale();
@@ -327,6 +329,7 @@ Page({
       });
       app.globalData.saleInfo = res.data.saleInfo;
     });
+    app.globalData.scene_change=false;
   },
   test: function() {
     util.request(api.Z_Test).then(res => {
