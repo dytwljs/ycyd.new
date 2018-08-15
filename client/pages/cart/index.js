@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page: { currentPage:1,pageSize:7},
+    page: { currentPage:1,pageSize:0,totalPages:0,count:0,length:0},
     orderList: {}
   },
 
@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      'page.pageSize':parseInt ((app.globalData.windowHeight*2-120)/120)+1
+      'page.pageSize':parseInt (app.globalData.rpxHeight/120)
     });
     this.getList();
     
@@ -95,6 +95,7 @@ Page({
         , 'page.currentPage': res.data.orderList.currentPage
         , 'page.pageSize': res.data.orderList.pageSize
         , 'page.totalPages': res.data.orderList.totalPages
+        , 'page.length': res.data.orderList.data.length
       });
       res.data.orderList.data.forEach(function (item) {
         // var t1 = new Date(item.add_time);

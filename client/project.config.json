@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "1012: 长按图片识别二维码",
-					"pathName": "pages/index/index",
+					"pathName": "pages/cart/index",
 					"query": "scene=sal-17076468336",
 					"scene": "1012"
 				},

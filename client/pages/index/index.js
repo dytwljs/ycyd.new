@@ -178,18 +178,19 @@ Page({
     } catch (e) {
       this.setData({
         isSelected: true,
-        scrollHeight: app.globalData.windowHeight * 2 - 360   
+        scrollHeight: app.globalData.rpxHeight - 240
       });
       console.log(this.data.scrollHeight);
       return;
     }
     this.setData({
       isSelected: false,
-      scrollHeight: app.globalData.windowHeight * 2 - 260   
+      scrollHeight: app.globalData.rpxHeight - 140
     });
     console.log(this.data.scrollHeight);
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
+    this.getWindowHeight();
     let that = this;
     const userInfo = e.detail;
 
@@ -300,7 +301,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    // this.getWindowHeight();
     this.setData({
       urlPrefix: api.HOST,
       scrollHeight: app.globalData.windowHeight * 2 - 260      
@@ -330,6 +332,7 @@ Page({
       app.globalData.saleInfo = res.data.saleInfo;
     });
     app.globalData.scene_change=false;
+    this.getSelected();
   },
   test: function() {
     util.request(api.Z_Test).then(res => {
@@ -345,6 +348,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    // this.getWindowHeight();
     this.setData({
       saleInfo: app.globalData.saleInfo
     });
@@ -381,5 +385,28 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {},
+
+  // getWindowHeight: function () {
+  //   var height = 0;
+  //   wx.getSystemInfo({
+  //     success: function (res) {
+  //       console.log(res.model)
+  //       console.log(res.pixelRatio)
+  //       // console.log(res.windowWidth)
+  //       // console.log(res.windowHeight)
+  //       console.log(res.language)
+  //       console.log(res.version)
+  //       console.log(res.platform)
+
+  //       // console.log(res.screenWidth);       //手机屏幕宽度
+  //       // console.log(res.screenHeight);      //手机屏幕高度
+  //       console.log(res.windowWidth);       //手机屏幕宽度
+  //       console.log(res.windowHeight);      //手机屏幕高度
+  //       height = res.windowHeight;//此处this.globalData不可用？？
+  //     }
+  //   });
+  //   // this.globalData.windowHeight = height;
+  //   // console.log(this.globalData.windowHeight);      //手机屏幕高度
+  // }
 });
