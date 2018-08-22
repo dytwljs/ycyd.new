@@ -16,6 +16,7 @@ page {
   height: 120rpx;
   /* font-weight:bold; */
   z-index: 99;
+  background-color: #f4f4f4;
 }
 .head {
   width: 100%;
@@ -27,6 +28,7 @@ page {
   margin-top:0.25rem;
   z-index: 99;
   top:0rpx;
+  background-color: #f4f4f4;
 }
 
 .th {

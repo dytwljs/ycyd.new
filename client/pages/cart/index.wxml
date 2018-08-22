@@ -5,9 +5,9 @@
  <view class='top'> 
     <view class='head'>订单数:
       <text class='redText'>{{' '+page.count+' '}}</text>条\t
-      <text class='redText'>{{' ('+page.currentPage+' '}}</text>/
+      <!-- <text class='redText'>{{' ('+page.currentPage+' '}}</text>/
       <text class='redText'>{{' '+page.totalPages+'页) '}}</text>当前页
-      <text class='redText'>{{' '+page.length+' '}}  </text>条
+      <text class='redText'>{{' '+page.length+' '}}  </text>条 -->
     </view>
       <view class="th ">
         <view class="td td20"></view>

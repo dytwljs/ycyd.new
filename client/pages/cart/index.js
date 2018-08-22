@@ -103,7 +103,8 @@ Page({
         item.date = util.formatTimeMDHM(item.add_time);
       });
       that.setData({
-        orderList: res.data.orderList.data
+        orderList: that.data.orderList.concat(res.data.orderList.data)
+        // ,orderList: res.data.orderList.data
         // ,fullOrderList: that.data.fullOrderList.concat(res.data.orderList.data)
       });
     })
@@ -118,7 +119,7 @@ Page({
         'page.currentPage': this.data.page.currentPage-1
     });
     // this.getListFromLocate();
-    this.getList();
+    // this.getList();
   },
   //从本地获取数据 
   getListFromLocate: function () {
@@ -140,6 +141,12 @@ Page({
     //   this.getListFromLocate();
     //   return;
     // }else
+      // this.getList();
+    if (this.data.orderList.length>=this.data.count)
+      return;
+    if (this.data.orderList.length > this.data.currentPage * this.data.pageSize) {
+      return;
+    }else
       this.getList();
   },
 
