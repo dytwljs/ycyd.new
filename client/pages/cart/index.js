@@ -9,7 +9,8 @@ Page({
    */
   data: {
     page: { currentPage:1,pageSize:0,totalPages:0,count:0,length:0},
-    orderList: {}
+    orderList: [],
+    fullOrderList:[]
   },
 
   /**
@@ -103,7 +104,8 @@ Page({
       });
       that.setData({
         orderList: res.data.orderList.data
-      })
+        // ,fullOrderList: that.data.fullOrderList.concat(res.data.orderList.data)
+      });
     })
   },
   /**
@@ -114,20 +116,31 @@ Page({
       return;
     this.setData({
         'page.currentPage': this.data.page.currentPage-1
-      });
+    });
+    // this.getListFromLocate();
     this.getList();
   },
-
+  //从本地获取数据 
+  getListFromLocate: function () {
+    this.setData({
+      orderList: this.data.fullOrderList.slice((this.data.currentPage - 1) * this.data.pageSize, this.data.pageSize)
+    });
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+ 
     if (this.data.page.currentPage == this.data.page.totalPages)
       return;
     this.setData({
         'page.currentPage': this.data.page.currentPage + 1
-      });
-    this.getList();
+    }); 
+    // if (this.data.fullOrderList.length >= this.data.currentPage * this.data.pageSize) {
+    //   this.getListFromLocate();
+    //   return;
+    // }else
+      this.getList();
   },
 
   /**

@@ -27,7 +27,7 @@
               <view class="td td20">
                 <image class="img" src="{{item.sale_avatar}}"></image>
               </view>
-              <view class="td td20">{{item.sale_name}}</view>
+              <view class="td td20">{{item.id}}{{item.sale_name}}</view>
               <view class="td td30 date">{{item.date}}</view>
               <view class="td td20 redText">{{item.retail_price}}</view>
               <view class="td td10">

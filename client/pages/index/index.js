@@ -190,7 +190,7 @@ Page({
     console.log(this.data.scrollHeight);
   },
   getUserInfo: function (e) {
-    this.getWindowHeight();
+    // this.getWindowHeight();
     let that = this;
     const userInfo = e.detail;
 
