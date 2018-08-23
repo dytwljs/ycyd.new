@@ -139,14 +139,16 @@ Page({
   },
   deleteCart: function() {
     let that = this;
-    for (var i = 0; i < this.data.storeList.length; i++)
+    for (var i = 0; i < this.data.storeList.length; i++){
       if (this.data.storeList[i].checked) {
         var checked = "storeList[" + i + "].checked";
-        // item.checked = false;
+        var check_number = "storeList[" + i + "].check_number";
         that.setData({
           [checked]: false
+          , [check_number]:0
         });
       }
+    }
     this.afterCheck();
   },
   afterCheck: function() {
@@ -267,6 +269,8 @@ Page({
           'success': function(res) {
             console.log(res);
             console.log('pay success');
+            //清除所选
+            that.deleteCart();
             util.request(api.OrderTaxiStatus, {
               id: orderInfo.id
             }).then(res => {

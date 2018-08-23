@@ -144,6 +144,8 @@ Page({
       // this.getList();
     if (this.data.orderList.length>=this.data.count)
       return;
+    if (this.data.orderList.length!=0 && this.data.orderList.length<this.data.pageSize*this.data.currentPage)
+    return;
     if (this.data.orderList.length > this.data.currentPage * this.data.pageSize) {
       return;
     }else
